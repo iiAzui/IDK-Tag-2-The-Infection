@@ -56,6 +56,7 @@ position = Vector2(-15, 661)
 shape = SubResource("RectangleShape2D_30aht")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_knq2t")
 
 [node name="Redson" parent="." node_paths=PackedStringArray("chase") instance=ExtResource("3_o2j4u")]
