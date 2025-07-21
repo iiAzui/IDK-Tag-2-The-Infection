@@ -4,6 +4,10 @@ var eye1 = preload("res://eyestrain/eye1.png")
 var eye2 = preload("res://eyestrain/eye2.png")
 var eye3 = preload("res://eyestrain/eye3.png")
 
+var b1 = preload("res://Players/Bob/Bob1.png")
+var b2 = preload("res://Players/Bob/Bob2.png")
+var b3 = preload("res://Players/Bob/Bob3.png")
+
 var speed = 400.0
 
 var breathingup = false
@@ -40,6 +44,7 @@ func _ready() -> void:
 				await get_tree().create_timer(0.1).timeout
 				if breath == 100.0:
 					breathed = true
+			breathingdown = false
 			
 	while Global.mode == 3:
 		if get_node("Timer2").is_stopped() or breath == 75.0:
@@ -98,17 +103,31 @@ func _physics_process(delta: float) -> void:
 		$"../strain".self_modulate.a = 10
 	elif breath > 70:
 		$"../strain".visible = false
+		
 	var directionX := Input.get_axis("Left", "Right")
 	if directionX:
 		velocity.x = directionX * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
+		
+	
 	var directionY := Input.get_axis("Up", "Down")
 	if directionY:
 		velocity.y = directionY * speed
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
+	
+	if directionY < 0:
+		get_node("Sprite2D").texture = b3
+	elif directionY > 0:
+		get_node("Sprite2D").texture = b1
+	elif directionX < 0:
+		get_node("Sprite2D").texture = b2
+		get_node("Sprite2D").flip_h = true
+	elif directionX > 0:
+		get_node("Sprite2D").texture = b2
+		get_node("Sprite2D").flip_h = false
 		
 	if Global.mode == 3:
 		if Input.is_action_just_pressed("Breath") and breath < 75.0:
@@ -118,14 +137,18 @@ func _physics_process(delta: float) -> void:
 				breathingup = true
 				breathingdown = false
 			breath += 0.5
-	
-	
-	
+		
+
+
 	if Global.score < 0:
-		print("Game Over")
-	if Global.score >= 50:
-		print("Win!")
-				
-				
+		Global.winlose = 2
+		get_tree().change_scene_to_file("res://inbetween.tscn")
+	elif Global.score >= 50:
+		Global.winlose = 1
+		get_tree().change_scene_to_file("res://inbetween.tscn")
+	elif breath < 0:
+		Global.winlose = 3
+		get_tree().change_scene_to_file("res://inbetween.tscn")
+
 
 	move_and_slide()

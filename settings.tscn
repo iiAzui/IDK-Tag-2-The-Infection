@@ -1,0 +1,280 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmr5ek6ub50xq"]
+
+[ext_resource type="Script" uid="uid://b7oued5ecdg7g" path="res://Scripts/settings.gd" id="1_x2hje"]
+[ext_resource type="Texture2D" uid="uid://ccuxiimn1ex0e" path="res://Players/Bob/Bob1.png" id="2_gc0em"]
+[ext_resource type="Texture2D" uid="uid://caooqr8dmm372" path="res://Bullies/Redson/Redson1.png" id="3_cj1lu"]
+[ext_resource type="Texture2D" uid="uid://c563756r5mpl0" path="res://coinjunk/coinbox.png" id="4_71mqq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwo76"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_3j6r5"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_3lj6o"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_gc0em"]
+font_size = 32
+
+[node name="settings" type="Node2D"]
+script = ExtResource("1_x2hje")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 288)
+zoom = Vector2(1, 1.125)
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="background"]
+offset_right = 192.0
+offset_bottom = 576.0
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="background"]
+offset_left = 576.0
+offset_right = 768.0
+offset_bottom = 576.0
+color = Color(0, 1, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="background"]
+offset_left = 768.0
+offset_right = 960.0
+offset_bottom = 576.0
+color = Color(0, 0, 1, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="background"]
+offset_left = 960.0
+offset_right = 1152.0
+offset_bottom = 576.0
+color = Color(0.686275, 0, 1, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="background"]
+offset_left = 192.0
+offset_right = 384.0
+offset_bottom = 576.0
+color = Color(1, 0.494118, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="background"]
+offset_left = 384.0
+offset_right = 576.0
+offset_bottom = 576.0
+color = Color(1, 1, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="background"]
+offset_right = 1152.0
+offset_bottom = 576.0
+color = Color(0, 0, 0, 0.576471)
+
+[node name="Easy" type="Button" parent="."]
+offset_left = 200.0
+offset_top = 16.0
+offset_right = 376.0
+offset_bottom = 80.0
+
+[node name="ez" type="Label" parent="Easy"]
+self_modulate = Color(1, 1, 0, 1)
+z_index = 6
+offset_top = -8.0
+offset_right = 176.0
+offset_bottom = 59.0
+text = "Easy"
+label_settings = SubResource("LabelSettings_jwo76")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Easy"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 176.0
+offset_bottom = 113.0
+text = "No Breathing needed!
+30 starting coins."
+horizontal_alignment = 1
+
+[node name="Normal" type="Button" parent="."]
+offset_left = 472.0
+offset_top = 16.0
+offset_right = 680.0
+offset_bottom = 80.0
+
+[node name="nrm" type="Label" parent="Normal"]
+z_index = 6
+offset_left = 16.0
+offset_top = -8.0
+offset_right = 192.0
+offset_bottom = 59.0
+text = "Normal"
+label_settings = SubResource("LabelSettings_jwo76")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Normal"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 208.0
+offset_bottom = 113.0
+text = "Hold Space to breath.
+15 starting coins."
+horizontal_alignment = 1
+
+[node name="Hard" type="Button" parent="."]
+offset_left = 776.0
+offset_top = 16.0
+offset_right = 952.0
+offset_bottom = 80.0
+
+[node name="hard" type="Label" parent="Hard"]
+self_modulate = Color(1, 0, 0, 1)
+z_index = 6
+offset_top = -8.0
+offset_right = 176.0
+offset_bottom = 59.0
+text = "Hard"
+label_settings = SubResource("LabelSettings_jwo76")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Hard"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 176.0
+offset_bottom = 113.0
+text = "Tap Space to breath.
+5 starting coins."
+horizontal_alignment = 1
+
+[node name="Bob1" type="Sprite2D" parent="."]
+position = Vector2(96, 176)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_gc0em")
+
+[node name="Button" type="Button" parent="Bob1"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="Bob1"]
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Bob.
+Starter Runner.
+Nothing Special."
+label_settings = SubResource("LabelSettings_3j6r5")
+horizontal_alignment = 1
+
+[node name="Oragne" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(224, 312)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_gc0em")
+
+[node name="HardModeUnlock" type="Sprite2D" parent="."]
+self_modulate = Color(0.270222, 0.270222, 0.270222, 1)
+position = Vector2(104, 448)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_gc0em")
+
+[node name="Bob4" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(376, 448)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_gc0em")
+
+[node name="Bob5" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(376, 208)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_gc0em")
+
+[node name="Bob6" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(496, 328)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_gc0em")
+
+[node name="Redson" type="Sprite2D" parent="."]
+position = Vector2(1080, 176)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_cj1lu")
+
+[node name="Button" type="Button" parent="Redson"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -240.0
+offset_top = -240.0
+offset_right = 240.0
+offset_bottom = 240.0
+
+[node name="Label" type="Label" parent="Redson"]
+offset_left = -280.0
+offset_top = 280.0
+offset_right = 280.0
+offset_bottom = 732.0
+text = "Redson.
+Starter Bully.
+Steals 10 coins
+when tagged.
+"
+label_settings = SubResource("LabelSettings_3lj6o")
+horizontal_alignment = 1
+
+[node name="Redson2" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(1072, 432)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_cj1lu")
+
+[node name="Redson3" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(936, 296)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_cj1lu")
+
+[node name="Redson4" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(792, 192)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_cj1lu")
+
+[node name="Redson6" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(800, 432)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_cj1lu")
+
+[node name="Redson7" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(664, 312)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_cj1lu")
+
+[node name="Player Selected" type="Sprite2D" parent="."]
+position = Vector2(96, 176)
+scale = Vector2(0.128, 0.205714)
+texture = ExtResource("4_71mqq")
+
+[node name="Enemy Selected" type="Sprite2D" parent="."]
+position = Vector2(1080, 176)
+scale = Vector2(0.224, 0.16)
+texture = ExtResource("4_71mqq")
+
+[node name="back" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 112.0
+offset_bottom = 64.0
+
+[node name="Label" type="Label" parent="back"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 84.0
+offset_bottom = 48.0
+text = "Back"
+label_settings = SubResource("LabelSettings_gc0em")
+
+[connection signal="pressed" from="Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="Normal" to="." method="_on_normal_pressed"]
+[connection signal="pressed" from="Hard" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]

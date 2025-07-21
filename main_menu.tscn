@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbbfv51becir8"]
+
+[ext_resource type="Texture2D" uid="uid://b688le6847xac" path="res://Why-Is-Asphalt-Black.jpg" id="1_fu7sn"]
+[ext_resource type="Script" uid="uid://bgjndy86xw1b7" path="res://Scripts/main_menu.gd" id="1_jix8l"]
+[ext_resource type="Texture2D" uid="uid://ccuxiimn1ex0e" path="res://Players/Bob/Bob1.png" id="2_jix8l"]
+[ext_resource type="Texture2D" uid="uid://caooqr8dmm372" path="res://Bullies/Redson/Redson1.png" id="3_glbon"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nlkkf"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_fu7sn"]
+font_size = 128
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jix8l"]
+font_size = 32
+font_color = Color(0, 1, 0, 1)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_jix8l")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 288)
+zoom = Vector2(1, 1.125)
+
+[node name="Why-is-asphalt-black" type="Sprite2D" parent="."]
+z_index = -99
+position = Vector2(560, 320)
+texture = ExtResource("1_fu7sn")
+
+[node name="Bob1" type="Sprite2D" parent="."]
+position = Vector2(144, 320)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_jix8l")
+
+[node name="Redson1" type="Sprite2D" parent="."]
+position = Vector2(1000, 336)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_glbon")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -1
+offset_left = 408.0
+offset_top = 184.0
+offset_right = 760.0
+offset_bottom = 272.0
+color = Color(1, 0, 0, 1)
+
+[node name="Play" type="Button" parent="."]
+z_index = 6
+offset_left = 408.0
+offset_top = 184.0
+offset_right = 760.0
+offset_bottom = 272.0
+
+[node name="Label" type="Label" parent="Play"]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 352.0
+offset_bottom = 80.0
+text = "Play!"
+label_settings = SubResource("LabelSettings_nlkkf")
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = 408.0
+offset_top = 320.0
+offset_right = 760.0
+offset_bottom = 408.0
+color = Color(1, 0, 1, 1)
+
+[node name="Settings" type="Button" parent="."]
+offset_left = 408.0
+offset_top = 320.0
+offset_right = 760.0
+offset_bottom = 408.0
+
+[node name="Label" type="Label" parent="Settings"]
+z_index = 6
+layout_mode = 0
+offset_top = -8.0
+offset_right = 352.0
+offset_bottom = 80.0
+text = "Modifiers"
+label_settings = SubResource("LabelSettings_nlkkf")
+horizontal_alignment = 1
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+z_index = -1
+offset_left = 408.0
+offset_top = 456.0
+offset_right = 760.0
+offset_bottom = 544.0
+color = Color(1, 1, 0, 1)
+
+[node name="Exit" type="Button" parent="."]
+z_index = 6
+offset_left = 408.0
+offset_top = 456.0
+offset_right = 760.0
+offset_bottom = 544.0
+
+[node name="Label" type="Label" parent="Exit"]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 352.0
+offset_bottom = 80.0
+text = "Exit"
+label_settings = SubResource("LabelSettings_nlkkf")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 344.0
+offset_right = 868.0
+offset_bottom = 175.0
+text = "IDK Tag?"
+label_settings = SubResource("LabelSettings_fu7sn")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 696.0
+offset_top = 152.0
+offset_right = 942.0
+offset_bottom = 197.0
+rotation = -0.296285
+text = "2: The Infection!"
+label_settings = SubResource("LabelSettings_jix8l")
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

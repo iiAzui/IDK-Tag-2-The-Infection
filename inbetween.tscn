@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://mlotbrtsjsla"]
+
+[ext_resource type="Script" uid="uid://be6xsp5qsqcyf" path="res://Scripts/inbetween.gd" id="1_bg4wu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lm22u"]
+font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_in75p"]
+font_size = 64
+
+[node name="Inbetween" type="Node2D"]
+script = ExtResource("1_bg4wu")
+
+[node name="You Win" type="Label" parent="."]
+offset_top = 16.0
+offset_right = 1152.0
+offset_bottom = 191.0
+text = "You Win!!!"
+label_settings = SubResource("LabelSettings_lm22u")
+horizontal_alignment = 1
+
+[node name="You Lost" type="Label" parent="."]
+visible = false
+offset_top = 16.0
+offset_right = 1152.0
+offset_bottom = 191.0
+text = "You Lost..."
+label_settings = SubResource("LabelSettings_lm22u")
+horizontal_alignment = 1
+
+[node name="Suffocate" type="Label" parent="."]
+visible = false
+offset_top = 16.0
+offset_right = 1152.0
+offset_bottom = 191.0
+text = "Suffocated..."
+label_settings = SubResource("LabelSettings_lm22u")
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 288)
+zoom = Vector2(1, 1.125)
+
+[node name="PlayAgain" type="Button" parent="."]
+offset_left = 408.0
+offset_top = 240.0
+offset_right = 744.0
+offset_bottom = 328.0
+
+[node name="Label" type="Label" parent="PlayAgain"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 327.0
+offset_bottom = 88.0
+text = "Play Again"
+label_settings = SubResource("LabelSettings_in75p")
+
+[node name="Menu" type="Button" parent="."]
+offset_left = 392.0
+offset_top = 352.0
+offset_right = 760.0
+offset_bottom = 440.0
+
+[node name="Label" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 327.0
+offset_bottom = 88.0
+text = "Main Menu"
+label_settings = SubResource("LabelSettings_in75p")
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 408.0
+offset_top = 464.0
+offset_right = 744.0
+offset_bottom = 552.0
+
+[node name="Label" type="Label" parent="Quit"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 327.0
+offset_bottom = 88.0
+text = "Rage Quit!"
+label_settings = SubResource("LabelSettings_in75p")
+
+[connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

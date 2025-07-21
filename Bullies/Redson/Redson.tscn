@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dabuo80nolctl"]
+[gd_scene load_steps=4 format=3 uid="uid://dabuo80nolctl"]
 
 [ext_resource type="Script" uid="uid://dup53p2w7ktip" path="res://Scripts/bully.gd" id="1_oge46"]
 [ext_resource type="Texture2D" uid="uid://caooqr8dmm372" path="res://Bullies/Redson/Redson1.png" id="2_2uhvx"]
@@ -6,15 +6,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ekpj8"]
 radius = 59.1354
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n721x"]
-radius = 59.0085
-
 [node name="Bully" type="CharacterBody2D"]
-collision_layer = 6
-collision_mask = 6
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_oge46")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ekpj8")
@@ -22,9 +21,6 @@ shape = SubResource("CircleShape2D_ekpj8")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_2uhvx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_n721x")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
