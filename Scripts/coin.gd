@@ -33,7 +33,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Enemies"):
-		print("redson")
 		Global.score -= 1
 		self.position = get_node("CoinBox").global_position
 		xrange = randi_range(-1000,1000)

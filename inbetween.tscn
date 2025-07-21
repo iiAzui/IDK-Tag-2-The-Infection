@@ -12,6 +12,7 @@ font_size = 64
 script = ExtResource("1_bg4wu")
 
 [node name="You Win" type="Label" parent="."]
+visible = false
 offset_top = 16.0
 offset_right = 1152.0
 offset_bottom = 191.0
@@ -34,6 +35,15 @@ offset_top = 16.0
 offset_right = 1152.0
 offset_bottom = 191.0
 text = "Suffocated..."
+label_settings = SubResource("LabelSettings_lm22u")
+horizontal_alignment = 1
+
+[node name="Tagged" type="Label" parent="."]
+visible = false
+offset_top = 16.0
+offset_right = 1152.0
+offset_bottom = 191.0
+text = "You got tagged.."
 label_settings = SubResource("LabelSettings_lm22u")
 horizontal_alignment = 1
 
