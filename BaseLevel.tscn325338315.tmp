@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dufwknypk64tf"]
+
+[ext_resource type="PackedScene" uid="uid://h8fuog3yqmwi" path="res://Players/player.tscn" id="1_5x8ra"]
+[ext_resource type="Texture2D" uid="uid://b688le6847xac" path="res://Why-Is-Asphalt-Black.jpg" id="2_o2j4u"]
+[ext_resource type="PackedScene" uid="uid://dabuo80nolctl" path="res://Bullies/bully.tscn" id="3_o2j4u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lktsq"]
+size = Vector2(100, 1310)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30aht"]
+size = Vector2(2370, 49)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_knq2t"]
+vertices = PackedVector2Array(1154.09, -643.023, 1165.91, 646, -1153.95, 646, -1148.04, -648.969)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1158, -659, -1164, 656, 1176, 656, 1164, -653)])
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_5x8ra")]
+position = Vector2(-222, -86)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -4096
+position = Vector2(3.00009, 2.99992)
+scale = Vector2(1.72206, 1.46858)
+texture = ExtResource("2_o2j4u")
+
+[node name="Border" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(-1188, 3)
+shape = SubResource("RectangleShape2D_lktsq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border"]
+position = Vector2(1193, 3)
+shape = SubResource("RectangleShape2D_lktsq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border"]
+position = Vector2(-19, -665.5)
+shape = SubResource("RectangleShape2D_30aht")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Border"]
+position = Vector2(-15, 661)
+shape = SubResource("RectangleShape2D_30aht")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_knq2t")
+
+[node name="Redson" parent="." node_paths=PackedStringArray("chase") instance=ExtResource("3_o2j4u")]
+position = Vector2(500, 200)
+chase = NodePath("../Player")
