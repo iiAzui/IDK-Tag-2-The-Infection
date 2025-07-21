@@ -18,6 +18,9 @@ func _ready() -> void:
 			get_node("You Lost").visible = true
 			get_node("Suffocate").visible = false
 			get_node("Tagged").visible = false
+			if Global.mode == 3:
+				Global.Unlocks[7] = 1
+				Global.Unlocks[1] = 1
 
 		3:
 			get_node("You Win").visible = false

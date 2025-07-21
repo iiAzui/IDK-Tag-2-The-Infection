@@ -12,16 +12,17 @@ func _ready() -> void:
 		for thing in file.get_var():
 			Global.Unlocks[index] = thing
 			index += 1
+		#Global.Unlocks = [1,0,0,0,0,0,1,0,0,0,0,0]
 		file.close()
 		
 	else:
 		var file = FileAccess.open(SAVE, FileAccess.WRITE)
 		file.store_var([1,0,0,0,0,0,1,0,0,0,0,0])
+		Global.Unlocks = [1,0,0,0,0,0,1,0,0,0,0,0]
 		file.close()
 	index = 0
 	for thing in Global.Unlocks:
 		if thing == 1:
-			print(index, thing, unlocks[index])
 			if index > 5:
 				var unmatched = true
 				while unmatched:
@@ -122,8 +123,8 @@ func _on_settings_pressed() -> void:
 
 func _on_exit_pressed() -> void:
 	var file = FileAccess.open(SAVE, FileAccess.WRITE)
-	file.store_var([1,0,0,0,0,0,1,0,0,0,0,0])
-	#file.store_var(Global.Unlocks)
+	#file.store_var([1,0,0,0,0,0,1,0,0,0,0,0])
+	file.store_var(Global.Unlocks)
 	file.close()
 	get_tree().quit()
 	

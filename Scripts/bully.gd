@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 					elif Global.mode == 2:
 						speed = randi_range(400,520)
 					elif Global.mode == 3:
-						speed = randi_range(480,800)
+						speed = randi_range(480,600)
 				"Bill":
 					get_node("Sprite2D").texture = bill
 					chasing = true
