@@ -181,11 +181,55 @@ position = Vector2(104, 448)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_gc0em")
 
+[node name="2Bttn" type="Button" parent="2"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="2"]
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Bob.
+Starter Runner.
+Nothing Special."
+label_settings = SubResource("LabelSettings_3j6r5")
+horizontal_alignment = 1
+
+[node name="UnlockText" type="Label" parent="2"]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="3" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(224, 312)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_gc0em")
+
+[node name="3Bttn" type="Button" parent="3"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="3"]
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Bob.
+Starter Runner.
+Nothing Special."
+label_settings = SubResource("LabelSettings_3j6r5")
+horizontal_alignment = 1
+
+[node name="UnlockText" type="Label" parent="3"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="4" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
@@ -193,17 +237,83 @@ position = Vector2(376, 208)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_gc0em")
 
+[node name="4Bttn" type="Button" parent="4"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="4"]
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Bob.
+Starter Runner.
+Nothing Special."
+label_settings = SubResource("LabelSettings_3j6r5")
+horizontal_alignment = 1
+
+[node name="UnlockText" type="Label" parent="4"]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="5" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(376, 448)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_gc0em")
 
+[node name="5Bttn" type="Button" parent="5"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="5"]
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Bob.
+Starter Runner.
+Nothing Special."
+label_settings = SubResource("LabelSettings_3j6r5")
+horizontal_alignment = 1
+
+[node name="UnlockText" type="Label" parent="5"]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="6" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(496, 328)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_gc0em")
+
+[node name="6Bttn" type="Button" parent="6"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="6"]
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Bob.
+Starter Runner.
+Nothing Special."
+label_settings = SubResource("LabelSettings_3j6r5")
+horizontal_alignment = 1
+
+[node name="UnlockText" type="Label" parent="6"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Redson" type="Sprite2D" parent="."]
 position = Vector2(1080, 176)
@@ -277,11 +387,55 @@ position = Vector2(936, 296)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_cj1lu")
 
+[node name="9Bttn" type="Button" parent="9"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="9"]
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Bob.
+Starter Runner.
+Nothing Special."
+label_settings = SubResource("LabelSettings_3j6r5")
+horizontal_alignment = 1
+
+[node name="UnlockText" type="Label" parent="9"]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="10" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(792, 192)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_cj1lu")
+
+[node name="10Bttn" type="Button" parent="10"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="10"]
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Bob.
+Starter Runner.
+Nothing Special."
+label_settings = SubResource("LabelSettings_3j6r5")
+horizontal_alignment = 1
+
+[node name="UnlockText" type="Label" parent="10"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="11" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
@@ -289,11 +443,55 @@ position = Vector2(800, 432)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_cj1lu")
 
+[node name="11Bttn" type="Button" parent="11"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="11"]
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Bob.
+Starter Runner.
+Nothing Special."
+label_settings = SubResource("LabelSettings_3j6r5")
+horizontal_alignment = 1
+
+[node name="UnlockText" type="Label" parent="11"]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="12" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(664, 312)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_cj1lu")
+
+[node name="12Bttn" type="Button" parent="12"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="12"]
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Bob.
+Starter Runner.
+Nothing Special."
+label_settings = SubResource("LabelSettings_3j6r5")
+horizontal_alignment = 1
+
+[node name="UnlockText" type="Label" parent="12"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="PB" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -326,6 +524,15 @@ label_settings = SubResource("LabelSettings_gc0em")
 [connection signal="pressed" from="Normal" to="." method="_on_normal_pressed"]
 [connection signal="pressed" from="Hard" to="." method="_on_hard_pressed"]
 [connection signal="pressed" from="Bob/BobBttn" to="." method="_on_bob_bttn_pressed"]
+[connection signal="pressed" from="2/2Bttn" to="." method="_on_2_bttn_pressed"]
+[connection signal="pressed" from="3/3Bttn" to="." method="_on_3_bttn_pressed"]
+[connection signal="pressed" from="4/4Bttn" to="." method="_on_4_bttn_pressed"]
+[connection signal="pressed" from="5/5Bttn" to="." method="_on_5_bttn_pressed"]
+[connection signal="pressed" from="6/6Bttn" to="." method="_on_6_bttn_pressed"]
 [connection signal="pressed" from="Redson/RedsonBttn" to="." method="_on_redson_bttn_pressed"]
 [connection signal="pressed" from="Bill/BillBttn" to="." method="_on_bill_bttn_pressed"]
+[connection signal="pressed" from="9/9Bttn" to="." method="_on_9_bttn_pressed"]
+[connection signal="pressed" from="10/10Bttn" to="." method="_on_10_bttn_pressed"]
+[connection signal="pressed" from="11/11Bttn" to="." method="_on_11_bttn_pressed"]
+[connection signal="pressed" from="12/12Bttn" to="." method="_on_12_bttn_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

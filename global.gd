@@ -5,7 +5,7 @@ var score = 0
 var winlose = 0
 var breath = 100
 var Bully = "Redson"
-var Player = "Bob"
+var Player = "Conner"
 
 var PBPos = Vector2(96,176)
 var BBPos = Vector2(1080,176)

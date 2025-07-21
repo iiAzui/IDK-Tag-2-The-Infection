@@ -8,7 +8,20 @@ var b1 = preload("res://Players/Bob/Bob1.png")
 var b2 = preload("res://Players/Bob/Bob2.png")
 var b3 = preload("res://Players/Bob/Bob3.png")
 
+var c1 = preload("res://Players/Conner/Conner1.png")
+var c2 = preload("res://Players/Conner/Conner2.png")
+var c3 = preload("res://Players/Conner/Conner3.png")
+
 var speed = 400.0
+var breathingdivide = 1
+var breathingmultiply = 1
+var breathingadd = 0
+var breathingsubtract = 0
+var breathup = 0
+
+var moving = false
+
+var firsttime = true
 
 var breathingup = false
 var breathed = false
@@ -24,47 +37,57 @@ func _ready() -> void:
 		3:
 			Global.score = 5
 			Global.breath = 75.0
-			
-	while Global.mode == 2:
-		if not Input.is_action_pressed("Breath") or breathed:
-			if breathingdown == false:
-				get_node("Timer").start(2)
-				breathingdown = true
-			await get_node("Timer").timeout
-			Global.breath -= randi_range(1,5)
-			breathingdown = false
-		else:
-			if breathingdown == false:
-				get_node("Timer").start(2)
-				breathingdown = true
-			await get_node("Timer").timeout
-			while Input.is_action_pressed("Breath") and not breathed:
-				Global.breath += 1
-				await get_tree().create_timer(0.1).timeout
-				if Global.breath == 100.0:
-					breathed = true
-			breathingdown = false
-			
-	while Global.mode == 3:
-		if get_node("Timer2").is_stopped() or Global.breath == 75.0:
-			breathingup = false
-			await get_tree().create_timer(0.2).timeout
-			if get_node("Timer2").is_stopped() or Global.breath == 75.0:
+	match Global.Player:
+		"Bob":
+			get_node("Sprite2D").texture = b1
+			speed = 400
+		"Conner":
+			get_node("Sprite2D").texture = c1
+			speed = 600
+			breathingmultiply = 2
+
+
+func _physics_process(delta: float) -> void:
+	if firsttime == true:
+		firsttime = false
+		while Global.mode == 2:
+			if not Input.is_action_pressed("Breath") or breathed:
 				if breathingdown == false:
 					get_node("Timer").start(2)
 					breathingdown = true
 				await get_node("Timer").timeout
+				Global.breath -= randi_range((1*breathingmultiply)-breathingsubtract,(5*breathingmultiply)+breathingadd)
+				breathingdown = false
+			else:
+				if breathingdown == false:
+					get_node("Timer").start(2)
+					breathingdown = true
+				await get_node("Timer").timeout
+				while Input.is_action_pressed("Breath") and not breathed:
+					Global.breath += (1+breathup)/breathingdivide
+					await get_tree().create_timer(0.1).timeout
+					if Global.breath == 100.0:
+						breathed = true
+				breathingdown = false
+			
+		while Global.mode == 3:
+			if get_node("Timer2").is_stopped() or Global.breath == 75.0:
+				breathingup = false
+				await get_tree().create_timer(0.2).timeout
 				if get_node("Timer2").is_stopped() or Global.breath == 75.0:
-					Global.breath -= randi_range(5,10)
-					breathingdown = false
-		else: 
-			await get_node("Timer2").timeout
-			breathingup = false
+					if breathingdown == false:
+						get_node("Timer").start(2)
+						breathingdown = true
+					await get_node("Timer").timeout
+					if get_node("Timer2").is_stopped() or Global.breath == 75.0:
+						Global.breath -= randi_range((5*breathingmultiply)-breathingsubtract,(10*breathingmultiply)+breathingadd)
+						breathingdown = false
+			else: 
+				await get_node("Timer2").timeout
+				breathingup = false
 			
 			
-
-
-func _physics_process(delta: float) -> void:
+			
 	if not Input.is_action_pressed("Breath") and breathed == true:
 		breathed = false
 		
@@ -104,29 +127,52 @@ func _physics_process(delta: float) -> void:
 		$"../strain".visible = false
 		
 	var directionX := Input.get_axis("Left", "Right")
-	if directionX:
-		velocity.x = directionX * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-	
-		
-	
 	var directionY := Input.get_axis("Up", "Down")
-	if directionY:
-		velocity.y = directionY * speed
+	if Global.Player == "Conner":
+		if not directionY and directionX:
+			velocity.x = directionX * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
 	else:
-		velocity.y = move_toward(velocity.y, 0, speed)
+		if directionX:
+			velocity.x = directionX * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
 	
-	if directionY < 0:
-		get_node("Sprite2D").texture = b3
-	elif directionY > 0:
-		get_node("Sprite2D").texture = b1
-	elif directionX < 0:
-		get_node("Sprite2D").texture = b2
-		get_node("Sprite2D").flip_h = true
-	elif directionX > 0:
-		get_node("Sprite2D").texture = b2
-		get_node("Sprite2D").flip_h = false
+	if Global.Player == "Conner":
+		if not directionX and directionY:
+			velocity.y = directionY * speed
+		else:
+			velocity.y = move_toward(velocity.y, 0, speed)
+	else:
+		if directionY:
+			velocity.y = directionY * speed
+		else:
+			velocity.y = move_toward(velocity.y, 0, speed)
+			
+	match Global.Player:
+		"Bob":
+			if directionY < 0:
+				get_node("Sprite2D").texture = b3
+			elif directionY > 0:
+				get_node("Sprite2D").texture = b1
+			elif directionX < 0:
+				get_node("Sprite2D").texture = b2
+				get_node("Sprite2D").flip_h = true
+			elif directionX > 0:
+				get_node("Sprite2D").texture = b2
+				get_node("Sprite2D").flip_h = false
+		"Conner":
+			if directionY < 0:
+				get_node("Sprite2D").texture = c3
+			elif directionY > 0:
+				get_node("Sprite2D").texture = c1
+			elif directionX < 0:
+				get_node("Sprite2D").texture = c2
+				get_node("Sprite2D").flip_h = true
+			elif directionX > 0:
+				get_node("Sprite2D").texture = c2
+				get_node("Sprite2D").flip_h = false
 		
 	if Global.mode == 3:
 		if Input.is_action_just_pressed("Breath") and Global.breath < 75.0:
@@ -134,7 +180,7 @@ func _physics_process(delta: float) -> void:
 				get_node("Timer2").start(1.5)
 				breathingup = true
 				breathingdown = false
-			Global.breath += 0.5
+			Global.breath += (0.5+(breathup/2))/breathingdivide
 		
 
 
