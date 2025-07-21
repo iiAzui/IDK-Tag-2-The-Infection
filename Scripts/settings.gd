@@ -4,7 +4,6 @@ var index = 0
 var unlocks = ["Bob","Conner","3","4","5","6","Redson","Bill","9","10","11","12"]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(Global.Unlocks)
 	%PB.position = Global.PBPos
 	%BB.position = Global.BBPos
 	match Global.mode:

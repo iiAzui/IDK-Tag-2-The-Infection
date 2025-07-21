@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbbfv51becir8"]
+[gd_scene load_steps=10 format=3 uid="uid://dbbfv51becir8"]
 
 [ext_resource type="Texture2D" uid="uid://b688le6847xac" path="res://Why-Is-Asphalt-Black.jpg" id="1_fu7sn"]
 [ext_resource type="Script" uid="uid://bgjndy86xw1b7" path="res://Scripts/main_menu.gd" id="1_jix8l"]
 [ext_resource type="Texture2D" uid="uid://ccuxiimn1ex0e" path="res://Players/Bob/Bob1.png" id="2_jix8l"]
 [ext_resource type="Texture2D" uid="uid://caooqr8dmm372" path="res://Bullies/Redson/Redson1.png" id="3_glbon"]
+[ext_resource type="Texture2D" uid="uid://stef01v4wmxx" path="res://Bullies/Classic/Bill1.png" id="3_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://c37y6mg1qjeer" path="res://Players/Conner/Conner1.png" id="6_qe12f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nlkkf"]
 font_size = 64
@@ -25,16 +27,42 @@ zoom = Vector2(1, 1.125)
 
 [node name="Why-is-asphalt-black" type="Sprite2D" parent="."]
 z_index = -99
-position = Vector2(560, 320)
+position = Vector2(507, 296)
 texture = ExtResource("1_fu7sn")
 
-[node name="Bob1" type="Sprite2D" parent="."]
-position = Vector2(144, 320)
+[node name="Bully1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1083, 508)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_jix8l")
+texture = ExtResource("3_nlkkf")
 
-[node name="Redson1" type="Sprite2D" parent="."]
-position = Vector2(1000, 336)
+[node name="Bully2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1035, 79)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_glbon")
+
+[node name="Bully3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1045, 243)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_glbon")
+
+[node name="Bully4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(871, 267)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_glbon")
+
+[node name="Bully5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(858, 499)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_glbon")
+
+[node name="Bully6" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(974, 387)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_glbon")
 
@@ -125,6 +153,42 @@ offset_bottom = 197.0
 rotation = -0.296285
 text = "2: The Infection!"
 label_settings = SubResource("LabelSettings_jix8l")
+
+[node name="Player1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(99, 128)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_jix8l")
+
+[node name="Player2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(263, 107)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_qe12f")
+
+[node name="Player3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(181, 295)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_qe12f")
+
+[node name="Player4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(78, 415)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_qe12f")
+
+[node name="Player5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(250, 478)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_qe12f")
+
+[node name="Player6" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(350, 328)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_qe12f")
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
