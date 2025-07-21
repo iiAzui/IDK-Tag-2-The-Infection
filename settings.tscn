@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmr5ek6ub50xq"]
+[gd_scene load_steps=13 format=3 uid="uid://cmr5ek6ub50xq"]
 
 [ext_resource type="Script" uid="uid://b7oued5ecdg7g" path="res://Scripts/settings.gd" id="1_x2hje"]
 [ext_resource type="Texture2D" uid="uid://ccuxiimn1ex0e" path="res://Players/Bob/Bob1.png" id="2_gc0em"]
+[ext_resource type="Texture2D" uid="uid://c37y6mg1qjeer" path="res://Players/Conner/Conner1.png" id="3_71mqq"]
 [ext_resource type="Texture2D" uid="uid://caooqr8dmm372" path="res://Bullies/Redson/Redson1.png" id="3_cj1lu"]
 [ext_resource type="Texture2D" uid="uid://c563756r5mpl0" path="res://coinjunk/coinbox.png" id="4_71mqq"]
 [ext_resource type="Texture2D" uid="uid://stef01v4wmxx" path="res://Bullies/Classic/Bill1.png" id="4_cj1lu"]
@@ -10,6 +11,9 @@
 font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_3j6r5"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_6mhpt"]
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_3lj6o"]
@@ -175,33 +179,42 @@ horizontal_alignment = 1
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="2" type="Sprite2D" parent="."]
+[node name="Conner" type="Sprite2D" parent="."]
 self_modulate = Color(0.270222, 0.270222, 0.270222, 1)
-position = Vector2(104, 448)
+position = Vector2(107, 428)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_gc0em")
+texture = ExtResource("3_71mqq")
 
-[node name="2Bttn" type="Button" parent="2"]
+[node name="ConnerBttn" type="Button" parent="Conner"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -160.0
 offset_top = -360.0
 offset_right = 160.0
 offset_bottom = 360.0
 
-[node name="Label" type="Label" parent="2"]
-offset_left = -240.0
-offset_top = 360.0
-offset_right = 219.0
-offset_bottom = 539.0
-text = "Bob.
-Starter Runner.
-Nothing Special."
+[node name="Label" type="Label" parent="Conner"]
+offset_left = -480.0
+offset_top = 345.0
+offset_right = 500.0
+offset_bottom = 615.0
+text = "Conner.
+Sprinter.
+Fast but can only go 1 direction.
+Breathes 2x more."
 label_settings = SubResource("LabelSettings_3j6r5")
 horizontal_alignment = 1
 
-[node name="UnlockText" type="Label" parent="2"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="UnlockText" type="Label" parent="Conner"]
+visible = false
+offset_left = -265.0
+offset_top = 370.0
+offset_right = 239.0
+offset_bottom = 640.0
+text = "Beat Hard mode
+to unlock.
+"
+label_settings = SubResource("LabelSettings_6mhpt")
+horizontal_alignment = 1
 
 [node name="3" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
@@ -351,7 +364,6 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_cj1lu")
 
 [node name="UnlockText" type="Label" parent="Bill"]
-visible = false
 offset_left = -260.0
 offset_top = 265.0
 offset_right = 300.0
@@ -363,6 +375,7 @@ label_settings = SubResource("LabelSettings_3lj6o")
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="Bill"]
+visible = false
 offset_left = -395.0
 offset_top = 285.0
 offset_right = 370.0
@@ -524,7 +537,7 @@ label_settings = SubResource("LabelSettings_gc0em")
 [connection signal="pressed" from="Normal" to="." method="_on_normal_pressed"]
 [connection signal="pressed" from="Hard" to="." method="_on_hard_pressed"]
 [connection signal="pressed" from="Bob/BobBttn" to="." method="_on_bob_bttn_pressed"]
-[connection signal="pressed" from="2/2Bttn" to="." method="_on_2_bttn_pressed"]
+[connection signal="pressed" from="Conner/ConnerBttn" to="." method="_on_2_bttn_pressed"]
 [connection signal="pressed" from="3/3Bttn" to="." method="_on_3_bttn_pressed"]
 [connection signal="pressed" from="4/4Bttn" to="." method="_on_4_bttn_pressed"]
 [connection signal="pressed" from="5/5Bttn" to="." method="_on_5_bttn_pressed"]

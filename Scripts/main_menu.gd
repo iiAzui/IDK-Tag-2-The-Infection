@@ -17,6 +17,7 @@ func _ready() -> void:
 		var file = FileAccess.open(SAVE, FileAccess.WRITE)
 		file.store_var([1,0,0,0,0,0,1,0,0,0,0,0])
 		file.close()
+
 	
 
 func _on_play_pressed() -> void:
