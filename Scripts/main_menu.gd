@@ -1,7 +1,7 @@
 extends Node2D
 
 const SAVE = "user://save.save"
-var unlocks = [preload("res://Players/Bob/Bob1.png"),preload("res://Players/Conner/Conner1.png"),preload("res://Players/Paul/Paul1.png"),"4","5","6",preload("res://Bullies/Redson/Redson1.png"),preload("res://Bullies/Classic/Bill1.png"),preload("res://Bullies/Clarence/Clarence1.png"),"10","11","12"]
+var unlocks = [preload("res://Players/Bob/Bob1.png"),preload("res://Players/Conner/Conner1.png"),preload("res://Players/Paul/Paul1.png"),preload("res://Players/Poppy/Poppy1.png"),"5","6",preload("res://Bullies/Redson/Redson1.png"),preload("res://Bullies/Classic/Bill1.png"),preload("res://Bullies/Clarence/Clarence1.png"),preload("res://Bullies/Jimmy/Jimmy1.png"),"11","12"]
 var used = [0,0,0,0,0,0]
 var pused = [0,0,0,0,0,0]
 var index = 0
@@ -13,7 +13,7 @@ func _ready() -> void:
 		for thing in file.get_var():
 			Global.Unlocks[index] = thing
 			index += 1
-		#Global.Unlocks = [1,0,0,0,0,0,1,0,0,0,0,0]
+		Global.Unlocks = [1,0,0,0,0,0,1,0,0,0,0,0]
 		file.close()
 		
 	else:

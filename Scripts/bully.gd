@@ -9,12 +9,16 @@ const s2 = preload("res://Bullies/Redson/Redson2.png")
 const bill = preload("res://Bullies/Classic/Bill1.png")
 const c1 = preload("res://Bullies/Clarence/Clarence1.png")
 const c2 = preload("res://Bullies/Clarence/Clarence2.png")
+const j1 = preload("res://Bullies/Jimmy/Jimmy1.png")
+const j2 = preload("res://Bullies/Jimmy/Jimmy2.png")
 
 var chasepos = Vector2(0,0)
 var chasing = false
 var chased = 0
 var rotate = 0
 var nocollid = false
+
+var pause = false
 
 var speed = 250.0
 var start = false
@@ -25,6 +29,9 @@ func _ready():
 			get_node("Sprite2D").texture = bill
 		"Clarence":
 			get_node("Sprite2D").texture = c1
+		"Jimmy":
+			get_node("Sprite2D").texture = j1
+			$JimmyTimer.start(4)
 	await get_tree().create_timer(2).timeout
 	start = true
 	
@@ -33,13 +40,33 @@ func _physics_process(delta: float) -> void:
 	
 	if start:
 		if Global.Bully != "Clarence":
+			if $JimmyTimer.is_stopped() and Global.Bully == "Jimmy":
+				get_node("Sprite2D").texture = j2
+				if not pause:
+					match Global.mode:
+						1:
+							speed = 400
+						2:
+							speed = 800
+						3:
+							speed = 1000
+			elif Global.Bully == "Jimmy":
+				get_node("Sprite2D").texture = j1
+				if not pause:
+					match Global.mode:
+						1:
+							speed = 200
+						2:
+							speed = 400
+						3:
+							speed = 500
+			
 			if chasing == false:
 				chased += 1
 				chasepos = chase.global_position
 				match Global.Bully:
 					"Redson":
 						get_node("Sprite2D").texture = s1
-						chasing = true
 						if Global.mode == 1:
 							speed = randi_range(300,400)
 						elif Global.mode == 2:
@@ -48,7 +75,6 @@ func _physics_process(delta: float) -> void:
 							speed = randi_range(480,600)
 					"Bill":
 						get_node("Sprite2D").texture = bill
-						chasing = true
 						match Global.mode:
 							1:
 								speed = 0 + position.distance_to(chasepos) + randi_range(-150,50)
@@ -58,8 +84,7 @@ func _physics_process(delta: float) -> void:
 								speed = 225 + position.distance_to(chasepos) + randi_range(-50,200)
 						chasepos.x += randi_range(-200,200)
 						chasepos.y += randi_range(-100,100)
-
-				
+			chasing = true
 			position += position.direction_to(chasepos) * speed * delta
 			if position.distance_to(chasepos) < 30:
 				chasing = false
@@ -115,6 +140,19 @@ func _physics_process(delta: float) -> void:
 								chased = 0
 								rotate = 0
 								nocollid = false
+					"Jimmy":
+						if chased > 0:
+							pause = true
+							chasing = true
+							speed = 0
+							if rotate < 10:
+								rotate += 1
+							else:
+								chasing = false
+								pause = false
+								chased = 0
+								rotate = 0
+								nocollid = false
 		else:
 			if chased == 0:
 				get_node("Sprite2D").texture = c1
@@ -150,7 +188,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		chasepos = position
 		if Global.Bully == "Redson":
 			Global.score -= 10
-		elif Global.Bully == "Bill":
+		elif Global.Bully == "Bill" or Global.Bully == "Jimmy":
 			if Global.Player == "Paul":
 				Global.rebirth = true
 				var index = 0
@@ -188,3 +226,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				nocollid = false
 				rotate = -200
 		chased += 20
+
+
+func _on_jimmy_button_pressed() -> void:
+	if Global.Bully == "Jimmy":
+		Global.breath -= 5
+		$JimmyTimer.start(2)

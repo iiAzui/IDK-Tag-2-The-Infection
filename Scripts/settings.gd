@@ -79,7 +79,9 @@ func _on_3_bttn_pressed() -> void:
 
 
 func _on_4_bttn_pressed() -> void:
-	pass # Replace with function body.
+	Global.Player = "Poppy"
+	%PB.position = get_node("Poppy").position
+	Global.PBPos = %PB.position
 
 
 func _on_5_bttn_pressed() -> void:
@@ -107,7 +109,9 @@ func _on_9_bttn_pressed() -> void:
 
 
 func _on_10_bttn_pressed() -> void:
-	pass # Replace with function body.
+	Global.Bully = "Jimmy"
+	%BB.position = get_node("Jimmy").position
+	Global.BBPos = %BB.position
 
 
 func _on_11_bttn_pressed() -> void:

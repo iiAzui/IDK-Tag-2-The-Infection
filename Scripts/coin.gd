@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 		
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		Global.score += randi_range(1,4-Global.mode)
+		Global.score += randi_range(1*Global.scoreup,(4-Global.mode)*Global.scoreup)
 		self.position = get_node("CoinBox").global_position
 		xrange = randi_range(-1000,1000)
 		yrange = randi_range(-600,600)

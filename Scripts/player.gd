@@ -16,12 +16,18 @@ var p1 = preload("res://Players/Paul/Paul1.png")
 var p2 = preload("res://Players/Paul/Paul2.png")
 var p3 = preload("res://Players/Paul/Paul3.png")
 
+var pop1 = preload("res://Players/Poppy/Poppy1.png")
+var pop2 = preload("res://Players/Poppy/Poppy2.png")
+var pop3 = preload("res://Players/Poppy/Poppy3.png")
+
 var speed = 400.0
 var breathingdivide = 1
 var breathingmultiply = 1
 var breathingadd = 0
 var breathingsubtract = 0
 var breathup = 0
+
+
 
 var unlocks = Global.unlocksname
 var currentunlocked = []
@@ -59,7 +65,11 @@ func _ready() -> void:
 			get_node("Sprite2D").texture = p1
 			speed = 400
 			breathingadd = 3
-
+		"Poppy":
+			get_node("Sprite2D").texture = pop1
+			speed = 400
+			$Blindness.visible = true
+			Global.scoreup = 2
 
 func _physics_process(delta: float) -> void:
 	if firsttime == true:
@@ -197,6 +207,17 @@ func _physics_process(delta: float) -> void:
 				get_node("Sprite2D").flip_h = true
 			elif directionX > 0:
 				get_node("Sprite2D").texture = p2
+				get_node("Sprite2D").flip_h = false
+		"Poppy":
+			if directionY < 0:
+				get_node("Sprite2D").texture = pop3
+			elif directionY > 0:
+				get_node("Sprite2D").texture = pop1
+			elif directionX < 0:
+				get_node("Sprite2D").texture = pop2
+				get_node("Sprite2D").flip_h = true
+			elif directionX > 0:
+				get_node("Sprite2D").texture = pop2
 				get_node("Sprite2D").flip_h = false
 			
 		
