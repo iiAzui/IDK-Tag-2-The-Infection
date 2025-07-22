@@ -6,9 +6,14 @@ var winlose = 0
 var breath = 100
 var Bully = "Redson"
 var Player = "Bob"
+var nrmwins = 0
+
+var rebirth = false
 
 var PBPos = Vector2(96,176)
 var BBPos = Vector2(1080,176)
 
+var unlocksname = ["Bob","Conner","Paul","4","5","6","Redson","Bill","Clarence","10","11","12"]
+
 var Unlocks = [1,0,0,0,0,0,1,0,0,0,0,0]
-#Runners:Bob Conner 3 4 5 6 Bullies:Redson Bill 3 4 5 6
+#Runners:Bob Conner Paul 4 5 6 Bullies:Redson Bill Clarence 4 5 6

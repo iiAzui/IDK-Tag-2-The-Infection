@@ -1,12 +1,13 @@
 extends Node2D
 
 const SAVE = "user://save.save"
-var unlocks = [preload("res://Players/Bob/Bob1.png"),preload("res://Players/Conner/Conner1.png"),"3","4","5","6",preload("res://Bullies/Redson/Redson1.png"),preload("res://Bullies/Classic/Bill1.png"),"9","10","11","12"]
+var unlocks = [preload("res://Players/Bob/Bob1.png"),preload("res://Players/Conner/Conner1.png"),preload("res://Players/Paul/Paul1.png"),"4","5","6",preload("res://Bullies/Redson/Redson1.png"),preload("res://Bullies/Classic/Bill1.png"),preload("res://Bullies/Clarence/Clarence1.png"),"10","11","12"]
 var used = [0,0,0,0,0,0]
 var pused = [0,0,0,0,0,0]
 var index = 0
 
 func _ready() -> void:
+	Global.rebirth = false
 	if FileAccess.file_exists(SAVE):
 		var file = FileAccess.open(SAVE, FileAccess.READ)
 		for thing in file.get_var():
@@ -103,23 +104,13 @@ func _ready() -> void:
 								$Player6.visible = true
 								pused[5] = 1
 								unmatched = false
-								
-							
-			
 		index += 1
-			
-
-	
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://BaseLevel.tscn")
-	
-		
-
 
 func _on_settings_pressed() -> void:
 	get_tree().change_scene_to_file("res://settings.tscn")
-
 
 func _on_exit_pressed() -> void:
 	var file = FileAccess.open(SAVE, FileAccess.WRITE)
@@ -127,5 +118,3 @@ func _on_exit_pressed() -> void:
 	file.store_var(Global.Unlocks)
 	file.close()
 	get_tree().quit()
-	
-	

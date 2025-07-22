@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmr5ek6ub50xq"]
+[gd_scene load_steps=17 format=3 uid="uid://cmr5ek6ub50xq"]
 
 [ext_resource type="Script" uid="uid://b7oued5ecdg7g" path="res://Scripts/settings.gd" id="1_x2hje"]
 [ext_resource type="Texture2D" uid="uid://ccuxiimn1ex0e" path="res://Players/Bob/Bob1.png" id="2_gc0em"]
 [ext_resource type="Texture2D" uid="uid://c37y6mg1qjeer" path="res://Players/Conner/Conner1.png" id="3_71mqq"]
 [ext_resource type="Texture2D" uid="uid://caooqr8dmm372" path="res://Bullies/Redson/Redson1.png" id="3_cj1lu"]
+[ext_resource type="Texture2D" uid="uid://c02jj0nfvgp7w" path="res://Players/Paul/Paul1.png" id="4_3lj6o"]
 [ext_resource type="Texture2D" uid="uid://c563756r5mpl0" path="res://coinjunk/coinbox.png" id="4_71mqq"]
 [ext_resource type="Texture2D" uid="uid://stef01v4wmxx" path="res://Bullies/Classic/Bill1.png" id="4_cj1lu"]
+[ext_resource type="Texture2D" uid="uid://dlmwxntqig3io" path="res://Bullies/Clarence/Clarence1.png" id="6_3j6r5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jwo76"]
 font_size = 48
@@ -16,11 +18,17 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_6mhpt"]
 font_size = 64
 
+[sub_resource type="LabelSettings" id="LabelSettings_ohexs"]
+font_size = 64
+
 [sub_resource type="LabelSettings" id="LabelSettings_3lj6o"]
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_cj1lu"]
 font_size = 58
+
+[sub_resource type="LabelSettings" id="LabelSettings_71mqq"]
+font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_gc0em"]
 font_size = 32
@@ -216,33 +224,38 @@ to unlock.
 label_settings = SubResource("LabelSettings_6mhpt")
 horizontal_alignment = 1
 
-[node name="3" type="Sprite2D" parent="."]
+[node name="Paul" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(224, 312)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_gc0em")
+texture = ExtResource("4_3lj6o")
 
-[node name="3Bttn" type="Button" parent="3"]
+[node name="PaulBttn" type="Button" parent="Paul"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -160.0
 offset_top = -360.0
 offset_right = 160.0
 offset_bottom = 360.0
 
-[node name="Label" type="Label" parent="3"]
-offset_left = -240.0
-offset_top = 360.0
-offset_right = 219.0
-offset_bottom = 539.0
-text = "Bob.
-Starter Runner.
-Nothing Special."
+[node name="Label" type="Label" parent="Paul"]
+offset_left = -395.0
+offset_top = 365.0
+offset_right = 359.0
+offset_bottom = 635.0
+text = "Paul.
+Weird Kid.
+Random Rebirth on loss."
 label_settings = SubResource("LabelSettings_3j6r5")
 horizontal_alignment = 1
 
-[node name="UnlockText" type="Label" parent="3"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="UnlockText" type="Label" parent="Paul"]
+visible = false
+offset_left = -300.0
+offset_top = 370.0
+offset_right = 320.0
+offset_bottom = 458.0
+text = "Suffocate on easy?!?"
+label_settings = SubResource("LabelSettings_ohexs")
 
 [node name="4" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
@@ -394,33 +407,44 @@ offset_top = -235.0
 offset_right = 240.0
 offset_bottom = 245.0
 
-[node name="9" type="Sprite2D" parent="."]
+[node name="Clarence" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(936, 296)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_cj1lu")
+texture = ExtResource("6_3j6r5")
 
-[node name="9Bttn" type="Button" parent="9"]
+[node name="ClarenceBttn" type="Button" parent="Clarence"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -160.0
-offset_top = -360.0
-offset_right = 160.0
-offset_bottom = 360.0
+offset_left = -235.0
+offset_top = -240.0
+offset_right = 235.0
+offset_bottom = 260.0
 
-[node name="Label" type="Label" parent="9"]
-offset_left = -240.0
-offset_top = 360.0
-offset_right = 219.0
-offset_bottom = 539.0
-text = "Bob.
-Starter Runner.
-Nothing Special."
+[node name="Label" type="Label" parent="Clarence"]
+offset_left = -395.0
+offset_top = 270.0
+offset_right = 377.0
+offset_bottom = 904.0
+text = "Clarence.
+More direct chasing.
+Choking mode activates
+on tag. Choking mode
+deactivates after some
+time or on tag (removes
+some breath). "
 label_settings = SubResource("LabelSettings_3j6r5")
 horizontal_alignment = 1
 
-[node name="UnlockText" type="Label" parent="9"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="UnlockText" type="Label" parent="Clarence"]
+visible = false
+offset_left = -365.0
+offset_top = 280.0
+offset_right = 329.0
+offset_bottom = 459.0
+text = "Beat Normal (or Hard) 
+3 times in a row."
+label_settings = SubResource("LabelSettings_71mqq")
+horizontal_alignment = 1
 
 [node name="10" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
@@ -538,13 +562,13 @@ label_settings = SubResource("LabelSettings_gc0em")
 [connection signal="pressed" from="Hard" to="." method="_on_hard_pressed"]
 [connection signal="pressed" from="Bob/BobBttn" to="." method="_on_bob_bttn_pressed"]
 [connection signal="pressed" from="Conner/ConnerBttn" to="." method="_on_2_bttn_pressed"]
-[connection signal="pressed" from="3/3Bttn" to="." method="_on_3_bttn_pressed"]
+[connection signal="pressed" from="Paul/PaulBttn" to="." method="_on_3_bttn_pressed"]
 [connection signal="pressed" from="4/4Bttn" to="." method="_on_4_bttn_pressed"]
 [connection signal="pressed" from="5/5Bttn" to="." method="_on_5_bttn_pressed"]
 [connection signal="pressed" from="6/6Bttn" to="." method="_on_6_bttn_pressed"]
 [connection signal="pressed" from="Redson/RedsonBttn" to="." method="_on_redson_bttn_pressed"]
 [connection signal="pressed" from="Bill/BillBttn" to="." method="_on_bill_bttn_pressed"]
-[connection signal="pressed" from="9/9Bttn" to="." method="_on_9_bttn_pressed"]
+[connection signal="pressed" from="Clarence/ClarenceBttn" to="." method="_on_9_bttn_pressed"]
 [connection signal="pressed" from="10/10Bttn" to="." method="_on_10_bttn_pressed"]
 [connection signal="pressed" from="11/11Bttn" to="." method="_on_11_bttn_pressed"]
 [connection signal="pressed" from="12/12Bttn" to="." method="_on_12_bttn_pressed"]

@@ -1,11 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://mlotbrtsjsla"]
+[gd_scene load_steps=8 format=3 uid="uid://mlotbrtsjsla"]
 
 [ext_resource type="Script" uid="uid://be6xsp5qsqcyf" path="res://Scripts/inbetween.gd" id="1_bg4wu"]
+[ext_resource type="VideoStream" uid="uid://cufwqojl8xmfs" path="res://videoplayback.ogv" id="2_in75p"]
+[ext_resource type="Texture2D" uid="uid://ccuxiimn1ex0e" path="res://Players/Bob/Bob1.png" id="2_lm22u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lm22u"]
 font_size = 128
 
 [sub_resource type="LabelSettings" id="LabelSettings_in75p"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_bg4wu"]
+font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_vkspo"]
 font_size = 64
 
 [node name="Inbetween" type="Node2D"]
@@ -92,6 +100,52 @@ offset_right = 327.0
 offset_bottom = 88.0
 text = "Rage Quit!"
 label_settings = SubResource("LabelSettings_in75p")
+
+[node name="Unlocked!" type="Node2D" parent="."]
+visible = false
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Unlocked!"]
+offset_left = -788.0
+offset_top = 551.0
+offset_right = 1132.0
+offset_bottom = 1631.0
+rotation = -0.70685
+scale = Vector2(1.11191, 1.24925)
+stream = ExtResource("2_in75p")
+loop = true
+
+[node name="ColorRect" type="ColorRect" parent="Unlocked!"]
+offset_right = 1153.0
+offset_bottom = 584.0
+color = Color(0, 0, 0, 0.490196)
+
+[node name="Label" type="Label" parent="Unlocked!"]
+offset_top = 32.0
+offset_right = 1153.0
+offset_bottom = 120.0
+text = "Unlocked: Paul"
+label_settings = SubResource("LabelSettings_bg4wu")
+horizontal_alignment = 1
+
+[node name="Bob1" type="Sprite2D" parent="Unlocked!"]
+position = Vector2(598, 295)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_lm22u")
+
+[node name="Ok" type="Button" parent="Unlocked!"]
+offset_left = 468.0
+offset_top = 419.0
+offset_right = 746.0
+offset_bottom = 533.0
+
+[node name="Label" type="Label" parent="Unlocked!/Ok"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 10.0
+offset_right = 214.0
+offset_bottom = 98.0
+text = "Okay"
+label_settings = SubResource("LabelSettings_vkspo")
 
 [connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

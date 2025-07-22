@@ -1,8 +1,8 @@
 extends Node2D
 
 var index = 0
-var unlocks = ["Bob","Conner","3","4","5","6","Redson","Bill","9","10","11","12"]
-# Called when the node enters the scene tree for the first time.
+var unlocks = Global.unlocksname
+
 func _ready() -> void:
 	%PB.position = Global.PBPos
 	%BB.position = Global.BBPos
@@ -73,7 +73,9 @@ func _on_2_bttn_pressed() -> void:
 
 
 func _on_3_bttn_pressed() -> void:
-	pass # Replace with function body.
+	Global.Player = "Paul"
+	%PB.position = get_node("Paul").position
+	Global.PBPos = %PB.position
 
 
 func _on_4_bttn_pressed() -> void:
@@ -99,7 +101,9 @@ func _on_bill_bttn_pressed() -> void:
 	Global.BBPos = %BB.position
 
 func _on_9_bttn_pressed() -> void:
-	pass # Replace with function body.
+	Global.Bully = "Clarence"
+	%BB.position = get_node("Clarence").position
+	Global.BBPos = %BB.position
 
 
 func _on_10_bttn_pressed() -> void:

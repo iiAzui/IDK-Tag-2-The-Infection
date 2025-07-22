@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dufwknypk64tf"]
+[gd_scene load_steps=11 format=3 uid="uid://dufwknypk64tf"]
 
 [ext_resource type="PackedScene" uid="uid://h8fuog3yqmwi" path="res://Players/player.tscn" id="1_5x8ra"]
 [ext_resource type="Texture2D" uid="uid://b688le6847xac" path="res://Why-Is-Asphalt-Black.jpg" id="2_o2j4u"]
@@ -17,6 +17,11 @@ font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_knq2t"]
 font_size = 64
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cwwxe"]
+vertices = PackedVector2Array(1154.91, -639.094, 1144.08, 625.07, -1159.95, 641.922, -1154.04, -661.898)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1164, -672, 1165, -649, 1154, 635, -1170, 652)])
 
 [node name="Node2D" type="Node2D"]
 
@@ -81,3 +86,6 @@ modulate = Color(1, 1, 1, 0.172549)
 self_modulate = Color(1, 1, 1, 0.172549)
 scale = Vector2(2.2, 2.2)
 texture = ExtResource("5_cwwxe")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_cwwxe")

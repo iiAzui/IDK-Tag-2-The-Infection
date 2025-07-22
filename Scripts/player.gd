@@ -12,12 +12,19 @@ var c1 = preload("res://Players/Conner/Conner1.png")
 var c2 = preload("res://Players/Conner/Conner2.png")
 var c3 = preload("res://Players/Conner/Conner3.png")
 
+var p1 = preload("res://Players/Paul/Paul1.png")
+var p2 = preload("res://Players/Paul/Paul2.png")
+var p3 = preload("res://Players/Paul/Paul3.png")
+
 var speed = 400.0
 var breathingdivide = 1
 var breathingmultiply = 1
 var breathingadd = 0
 var breathingsubtract = 0
 var breathup = 0
+
+var unlocks = Global.unlocksname
+var currentunlocked = []
 
 var moving = false
 
@@ -27,16 +34,19 @@ var breathingup = false
 var breathed = false
 var breathingdown = false
 func _ready() -> void:
-	match Global.mode:
-		1:
-			Global.score = 30
-			Global.breath = 100.0
-		2:
-			Global.score = 15
-			Global.breath = 100.0
-		3:
-			Global.score = 5
-			Global.breath = 75.0
+	if Global.rebirth == false:
+		match Global.mode:
+			1:
+				Global.score = 30
+				Global.breath = 100.0
+			2:
+				Global.score = 15
+				Global.breath = 100.0
+			3:
+				Global.score = 5
+				Global.breath = 75.0
+	else:
+		Global.score += 5
 	match Global.Player:
 		"Bob":
 			get_node("Sprite2D").texture = b1
@@ -45,6 +55,10 @@ func _ready() -> void:
 			get_node("Sprite2D").texture = c1
 			speed = 600
 			breathingmultiply = 2
+		"Paul":
+			get_node("Sprite2D").texture = p1
+			speed = 400
+			breathingadd = 3
 
 
 func _physics_process(delta: float) -> void:
@@ -173,6 +187,18 @@ func _physics_process(delta: float) -> void:
 			elif directionX > 0:
 				get_node("Sprite2D").texture = c2
 				get_node("Sprite2D").flip_h = false
+		"Paul":
+			if directionY < 0:
+				get_node("Sprite2D").texture = p3
+			elif directionY > 0:
+				get_node("Sprite2D").texture = p1
+			elif directionX < 0:
+				get_node("Sprite2D").texture = p2
+				get_node("Sprite2D").flip_h = true
+			elif directionX > 0:
+				get_node("Sprite2D").texture = p2
+				get_node("Sprite2D").flip_h = false
+			
 		
 	if Global.mode == 3:
 		if Input.is_action_just_pressed("Breath") and Global.breath < 75.0:
@@ -185,14 +211,34 @@ func _physics_process(delta: float) -> void:
 
 
 	if Global.score < 0:
-		Global.winlose = 2
-		get_tree().change_scene_to_file("res://inbetween.tscn")
+		if Global.Player == "Paul":
+			Global.rebirth = true
+			var index = 0
+			for thing in Global.Unlocks:
+				if thing == 1 and index != 2:
+					currentunlocked.append(unlocks[index])
+					index += 1
+			print(currentunlocked, currentunlocked.size())
+			Global.Player = str(currentunlocked[randi_range(0,currentunlocked.size()-1)])
+			get_tree().change_scene_to_file("res://BaseLevel.tscn")
+		elif not Global.Player == "Paul":
+			Global.winlose = 2
+			get_tree().change_scene_to_file("res://inbetween.tscn")
 	elif Global.score >= 50:
 		Global.winlose = 1
 		get_tree().change_scene_to_file("res://inbetween.tscn")
-	elif Global.breath < 0:
-		Global.winlose = 3
-		get_tree().change_scene_to_file("res://inbetween.tscn")
-
-
+	elif Global.breath <= 0:
+		if Global.Player == "Paul":
+			Global.rebirth = true
+			var index = 0
+			for thing in Global.Unlocks:
+				if thing == 1 and index != 2:
+					currentunlocked.append(unlocks[index])
+					index += 1
+			print(currentunlocked, currentunlocked.size())
+			Global.Player = str(currentunlocked[randi_range(0,currentunlocked.size()-1)])
+			get_tree().change_scene_to_file("res://BaseLevel.tscn")
+		elif not Global.Player == "Paul":
+			Global.winlose = 3
+			get_tree().change_scene_to_file("res://inbetween.tscn")
 	move_and_slide()
