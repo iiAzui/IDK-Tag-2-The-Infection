@@ -13,7 +13,7 @@ func _ready() -> void:
 		for thing in file.get_var():
 			Global.Unlocks[index] = thing
 			index += 1
-		Global.Unlocks = [1,0,0,0,0,0,1,0,0,0,0,0]
+		#Global.Unlocks = [1,0,0,0,0,0,1,0,0,0,0,0]
 		file.close()
 		
 	else:
