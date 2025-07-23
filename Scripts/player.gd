@@ -53,13 +53,17 @@ func _ready() -> void:
 				Global.breath = 75.0
 	else:
 		Global.score += 5
+		if Global.mode != 3:
+			Global.breath = 100.0
+		else:
+			Global.breath = 75.0
 	match Global.Player:
 		"Bob":
 			get_node("Sprite2D").texture = b1
 			speed = 400
 		"Conner":
 			get_node("Sprite2D").texture = c1
-			speed = 600
+			speed = 700
 			breathingmultiply = 2
 		"Paul":
 			get_node("Sprite2D").texture = p1
@@ -71,11 +75,11 @@ func _ready() -> void:
 			$Blindness.visible = true
 			Global.scoreup = 2
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if firsttime == true:
 		firsttime = false
-		while Global.mode == 2:
-			if not Input.is_action_pressed("Breath") or breathed:
+		while Global.mode == 2 or Global.mode == 1:
+			if (not Input.is_action_pressed("Breath") or breathed) and Global.mode == 2:
 				if breathingdown == false:
 					get_node("Timer").start(2)
 					breathingdown = true
@@ -88,6 +92,7 @@ func _physics_process(delta: float) -> void:
 					breathingdown = true
 				await get_node("Timer").timeout
 				while Input.is_action_pressed("Breath") and not breathed:
+					@warning_ignore("integer_division")
 					Global.breath += (1+breathup)/breathingdivide
 					await get_tree().create_timer(0.1).timeout
 					if Global.breath == 100.0:
@@ -227,6 +232,7 @@ func _physics_process(delta: float) -> void:
 				get_node("Timer2").start(1.5)
 				breathingup = true
 				breathingdown = false
+			@warning_ignore("integer_division")
 			Global.breath += (0.5+(breathup/2))/breathingdivide
 		
 

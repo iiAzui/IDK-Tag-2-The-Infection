@@ -120,3 +120,7 @@ func _on_11_bttn_pressed() -> void:
 
 func _on_12_bttn_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_more_pressed() -> void:
+	get_tree().change_scene_to_file("res://more.tscn")

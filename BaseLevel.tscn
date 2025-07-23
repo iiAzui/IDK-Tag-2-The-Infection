@@ -56,7 +56,17 @@ position = Vector2(-15, 661)
 shape = SubResource("RectangleShape2D_30aht")
 
 [node name="Bully" parent="." node_paths=PackedStringArray("chase") groups=["Enemies"] instance=ExtResource("3_o2j4u")]
+position = Vector2(830, -1)
+chase = NodePath("../Player")
+
+[node name="Child1" parent="." node_paths=PackedStringArray("chase") groups=["Enemies"] instance=ExtResource("3_o2j4u")]
+position = Vector2(945, 3)
+scale = Vector2(0.75, 0.75)
+chase = NodePath("../Player")
+
+[node name="Child2" parent="." node_paths=PackedStringArray("chase") groups=["Enemies"] instance=ExtResource("3_o2j4u")]
 position = Vector2(1031, 6)
+scale = Vector2(0.5, 0.5)
 chase = NodePath("../Player")
 
 [node name="Label" type="Label" parent="."]
@@ -70,6 +80,12 @@ label_settings = SubResource("LabelSettings_o2j4u")
 horizontal_alignment = 1
 
 [node name="Coin" parent="." instance=ExtResource("4_knq2t")]
+position = Vector2(-309, -399)
+
+[node name="EvilCoin" parent="." instance=ExtResource("4_knq2t")]
+position = Vector2(-309, -399)
+
+[node name="EvilCoin2" parent="." instance=ExtResource("4_knq2t")]
 position = Vector2(-309, -399)
 
 [node name="Score" type="Label" parent="."]

@@ -26,6 +26,7 @@ texture = ExtResource("2_2uhvx")
 
 [node name="JimmyButton" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
+z_index = 4096
 offset_left = -61.0
 offset_top = -59.0
 offset_right = 58.0

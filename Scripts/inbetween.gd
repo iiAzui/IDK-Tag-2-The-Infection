@@ -19,23 +19,21 @@ func _ready() -> void:
 			get_node("You Lost").visible = false
 			get_node("Suffocate").visible = false
 			get_node("Tagged").visible = false
-			if Global.mode == 3 and Global.Unlocks[7] == 0:
-				Global.Unlocks[7] = 1
-				unlocked("Bill",Bill)
-				await goahead
-				Global.Unlocks[1] = 1
-				unlocked("Conner",Conner)
-				await goahead
-			if Global.mode == 2 or Global.mode == 3:
-				Global.nrmwins += 1
-				if Global.nrmwins == 3 and Global.Unlocks[8] == 0:
-					Global.Unlocks[8] = 1
-					unlocked("Clarence",Clarence)
+			if Global.bullyspeedmulti > 0:
+				if Global.mode == 3 and Global.Unlocks[7] == 0:
+					Global.Unlocks[7] = 1
+					unlocked("Bill",Bill)
 					await goahead
-			if Global.breath < 20 and Global.Unlocks[3] == 0:
-				Global.Unlocks[3] = 1
-				unlocked("Poppy",Poppy)
-				await goahead
+				if Global.mode == 2 or Global.mode == 3:
+					Global.nrmwins += 1
+					if Global.nrmwins == 3 and Global.Unlocks[8] == 0:
+						Global.Unlocks[8] = 1
+						unlocked("Clarence",Clarence)
+						await goahead
+				if Global.breath < 20 and Global.Unlocks[3] == 0:
+					Global.Unlocks[3] = 1
+					unlocked("Poppy",Poppy)
+					await goahead
 
 		2:
 			get_node("You Win").visible = false
@@ -43,9 +41,14 @@ func _ready() -> void:
 			get_node("Suffocate").visible = false
 			get_node("Tagged").visible = false
 			Global.nrmwins = 0
-			if Global.score >= 45 and Global.Unlocks[9] == 0:
-				Global.Unlocks[9] = 1
-				unlocked("Jimmy",Jimmy)
+			if Global.bullyspeedmulti > 0:
+				if Global.score >= 45 and Global.Unlocks[9] == 0:
+					Global.Unlocks[9] = 1
+					unlocked("Jimmy",Jimmy)
+					await goahead
+			if Global.bullyspeedmulti < 0 and Global.Unlocks[1] == 0:
+				Global.Unlocks[1] = 1
+				unlocked("Conner",Conner)
 				await goahead
 
 
@@ -54,14 +57,19 @@ func _ready() -> void:
 			get_node("You Lost").visible = false
 			get_node("Suffocate").visible = true
 			get_node("Tagged").visible = false
-			if Global.mode == 1 and Global.Unlocks[2] == 0:
-				Global.Unlocks[2] = 1
-				unlocked("Paul",Paul)
-				await goahead
 			Global.nrmwins = 0
-			if Global.score >= 45 and Global.Unlocks[9] == 0:
-				Global.Unlocks[9] = 1
-				unlocked("Jimmy",Jimmy)
+			if Global.bullyspeedmulti > 0:
+				if Global.mode == 1 and Global.Unlocks[2] == 0:
+					Global.Unlocks[2] = 1
+					unlocked("Paul",Paul)
+					await goahead
+				if Global.score >= 45 and Global.Unlocks[9] == 0:
+					Global.Unlocks[9] = 1
+					unlocked("Jimmy",Jimmy)
+					await goahead
+			if Global.bullyspeedmulti < 0 and Global.Unlocks[1] == 0:
+				Global.Unlocks[1] = 1
+				unlocked("Conner",Conner)
 				await goahead
 		4:
 			get_node("You Win").visible = false
@@ -69,9 +77,14 @@ func _ready() -> void:
 			get_node("Suffocate").visible = false
 			get_node("Tagged").visible = true
 			Global.nrmwins = 0
-			if Global.score >= 45 and Global.Unlocks[9] == 0:
-				Global.Unlocks[9] = 1
-				unlocked("Jimmy",Jimmy)
+			if Global.bullyspeedmulti > 0:
+				if Global.score >= 45 and Global.Unlocks[9] == 0:
+					Global.Unlocks[9] = 1
+					unlocked("Jimmy",Jimmy)
+					await goahead
+			if Global.bullyspeedmulti < 0 and Global.Unlocks[1] == 0:
+				Global.Unlocks[1] = 1
+				unlocked("Conner",Conner)
 				await goahead
 
 	var file = FileAccess.open(SAVE, FileAccess.WRITE)

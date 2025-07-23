@@ -29,66 +29,58 @@ one_shot = true
 
 [node name="Blindness" type="Node2D" parent="."]
 visible = false
+z_index = 4095
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Blindness"]
 self_modulate = Color(1, 1, 1, 0.278431)
-z_index = 4096
 position = Vector2(0, 23.9998)
 scale = Vector2(5, 6.51852)
 texture = ExtResource("3_dju3o")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Blindness"]
 self_modulate = Color(1, 1, 1, 0.627451)
-z_index = 4096
 scale = Vector2(10, 10)
 texture = ExtResource("3_dju3o")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Blindness"]
 self_modulate = Color(1, 1, 1, 0.823529)
-z_index = 4096
 position = Vector2(0, 14.0002)
 scale = Vector2(15, 15.0432)
 texture = ExtResource("3_dju3o")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Blindness"]
 self_modulate = Color(1, 1, 1, 0.823529)
-z_index = 4096
 position = Vector2(0, 14.0002)
 scale = Vector2(20, 20)
 texture = ExtResource("3_dju3o")
 
 [node name="Sprite2D5" type="Sprite2D" parent="Blindness"]
 self_modulate = Color(1, 1, 1, 0.823529)
-z_index = 4096
 position = Vector2(0, 14.0002)
 scale = Vector2(25, 25)
 texture = ExtResource("3_dju3o")
 
 [node name="Sprite2D6" type="Sprite2D" parent="Blindness"]
 self_modulate = Color(1, 1, 1, 0.823529)
-z_index = 4096
 position = Vector2(0, 14.0002)
 scale = Vector2(30, 30)
 texture = ExtResource("3_dju3o")
 
 [node name="Sprite2D7" type="Sprite2D" parent="Blindness"]
 self_modulate = Color(1, 1, 1, 0.823529)
-z_index = 4096
 position = Vector2(0, 14.0002)
 scale = Vector2(40, 40)
 texture = ExtResource("3_dju3o")
 
 [node name="Sprite2D8" type="Sprite2D" parent="Blindness"]
 self_modulate = Color(1, 1, 1, 0.823529)
-z_index = 4096
 position = Vector2(0, 14.0002)
 scale = Vector2(45, 45)
 texture = ExtResource("3_dju3o")
 
 [node name="Sprite2D9" type="Sprite2D" parent="Blindness"]
 self_modulate = Color(1, 1, 1, 0.823529)
-z_index = 4096
 position = Vector2(0, 14.0002)
 scale = Vector2(50, 50)
 texture = ExtResource("3_dju3o")

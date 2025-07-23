@@ -1,0 +1,183 @@
+[gd_scene load_steps=7 format=3 uid="uid://mkjdjribfg52"]
+
+[ext_resource type="Script" uid="uid://cxh44fvpfb3qr" path="res://Scripts/more.gd" id="1_mpfli"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mpfli"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_ps4bi"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_fjo8k"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_3vtjc"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_o32xp"]
+font_size = 28
+
+[node name="More" type="Node2D"]
+script = ExtResource("1_mpfli")
+
+[node name="background" type="Node2D" parent="."]
+position = Vector2(1152, 576)
+rotation = 3.14159
+
+[node name="ColorRect" type="ColorRect" parent="background"]
+offset_right = 192.0
+offset_bottom = 576.0
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="background"]
+offset_left = 576.0
+offset_right = 768.0
+offset_bottom = 576.0
+color = Color(0, 1, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="background"]
+offset_left = 768.0
+offset_right = 960.0
+offset_bottom = 576.0
+color = Color(0, 0, 1, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="background"]
+offset_left = 960.0
+offset_right = 1152.0
+offset_bottom = 576.0
+color = Color(0.686275, 0, 1, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="background"]
+offset_left = 192.0
+offset_right = 384.0
+offset_bottom = 576.0
+color = Color(1, 0.494118, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="background"]
+offset_left = 384.0
+offset_right = 576.0
+offset_bottom = 576.0
+color = Color(1, 1, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="background"]
+offset_right = 1152.0
+offset_bottom = 576.0
+color = Color(0, 0, 0, 0.670588)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 288)
+zoom = Vector2(1, 1.125)
+
+[node name="AddChild" type="Button" parent="."]
+offset_left = 76.0
+offset_top = 142.0
+offset_right = 339.0
+offset_bottom = 187.0
+
+[node name="Label" type="Label" parent="AddChild"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 1.0
+offset_right = 264.0
+offset_bottom = 45.0
+text = "+1 Child Bully"
+label_settings = SubResource("LabelSettings_mpfli")
+horizontal_alignment = 1
+
+[node name="EvilCoins" type="Button" parent="."]
+offset_left = 387.0
+offset_top = 140.0
+offset_right = 650.0
+offset_bottom = 185.0
+
+[node name="Label" type="Label" parent="EvilCoins"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 1.0
+offset_right = 264.0
+offset_bottom = 45.0
+text = "Evil Coins"
+label_settings = SubResource("LabelSettings_mpfli")
+horizontal_alignment = 1
+
+[node name="BullySpeedUp" type="Button" parent="."]
+offset_left = 76.0
+offset_top = 212.0
+offset_right = 339.0
+offset_bottom = 302.0
+
+[node name="Label" type="Label" parent="BullySpeedUp"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 1.0
+offset_right = 264.0
+offset_bottom = 45.0
+text = "+1 Bully Speed 
+Multiplier"
+label_settings = SubResource("LabelSettings_mpfli")
+horizontal_alignment = 1
+
+[node name="BullySpeedDown" type="Button" parent="."]
+offset_left = 76.0
+offset_top = 379.0
+offset_right = 339.0
+offset_bottom = 469.0
+
+[node name="Label" type="Label" parent="BullySpeedDown"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 1.0
+offset_right = 264.0
+offset_bottom = 45.0
+text = "-1 Bully Speed 
+Multiplier"
+label_settings = SubResource("LabelSettings_mpfli")
+horizontal_alignment = 1
+
+[node name="back" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 112.0
+offset_bottom = 64.0
+
+[node name="Label" type="Label" parent="back"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 84.0
+offset_bottom = 48.0
+text = "Back"
+label_settings = SubResource("LabelSettings_ps4bi")
+
+[node name="MoreModifiers" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 1154.0
+offset_bottom = 95.0
+text = "More Modifiers!"
+label_settings = SubResource("LabelSettings_fjo8k")
+horizontal_alignment = 1
+
+[node name="MoreModifiers2" type="Label" parent="."]
+offset_top = 75.0
+offset_right = 1153.0
+offset_bottom = 120.0
+text = "White = Active"
+label_settings = SubResource("LabelSettings_3vtjc")
+horizontal_alignment = 1
+
+[node name="BullySpeedMulti" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 303.0
+offset_right = 382.0
+offset_bottom = 378.0
+text = "BS Multiplier: 1"
+label_settings = SubResource("LabelSettings_o32xp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="AddChild" to="." method="_on_add_child_pressed"]
+[connection signal="pressed" from="EvilCoins" to="." method="_on_evil_coins_pressed"]
+[connection signal="pressed" from="BullySpeedUp" to="." method="_on_bully_speed_up_pressed"]
+[connection signal="pressed" from="BullySpeedDown" to="." method="_on_bully_speed_down_pressed"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]

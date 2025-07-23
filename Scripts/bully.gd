@@ -15,8 +15,12 @@ const j2 = preload("res://Bullies/Jimmy/Jimmy2.png")
 var chasepos = Vector2(0,0)
 var chasing = false
 var chased = 0
+@warning_ignore("shadowed_variable_base_class")
 var rotate = 0
 var nocollid = false
+
+var speeddown = 1
+var speedup = Global.bullyspeedmulti
 
 var pause = false
 
@@ -32,6 +36,26 @@ func _ready():
 		"Jimmy":
 			get_node("Sprite2D").texture = j1
 			$JimmyTimer.start(4)
+	if Global.mode == 2 or Global.mode == 1:
+		if Global.addchild == true and self.name == "Child1":
+			self.visible = true
+		elif not self.name == "Bully":
+			self.visible = false
+			self.queue_free()
+	elif Global.mode == 3:
+			if self.name == "Child1":
+				self.visible = true
+			if Global.addchild == true and self.name == "Child2":
+				self.visible = true
+			elif self.name == "Child2":
+				self.visible = false
+				self.queue_free()
+	if self.name == "Child1":
+		speeddown = 2
+		await get_tree().create_timer(2).timeout
+	elif self.name == "Child2":
+		speeddown = 3
+		await get_tree().create_timer(4).timeout
 	await get_tree().create_timer(2).timeout
 	start = true
 	
@@ -45,21 +69,27 @@ func _physics_process(delta: float) -> void:
 				if not pause:
 					match Global.mode:
 						1:
-							speed = 400
+							@warning_ignore("integer_division")
+							speed = (400*speedup) / speeddown
 						2:
-							speed = 800
+							@warning_ignore("integer_division")
+							speed = (800*speedup)/ speeddown
 						3:
-							speed = 1000
+							@warning_ignore("integer_division")
+							speed = (1000*speedup)/ speeddown
 			elif Global.Bully == "Jimmy":
 				get_node("Sprite2D").texture = j1
 				if not pause:
 					match Global.mode:
 						1:
-							speed = 200
+							@warning_ignore("integer_division")
+							speed = (200*speedup)/ speeddown
 						2:
-							speed = 400
+							@warning_ignore("integer_division")
+							speed = (400*speedup)/ speeddown
 						3:
-							speed = 500
+							@warning_ignore("integer_division")
+							speed = (500*speedup)/ speeddown
 			
 			if chasing == false:
 				chased += 1
@@ -68,22 +98,25 @@ func _physics_process(delta: float) -> void:
 					"Redson":
 						get_node("Sprite2D").texture = s1
 						if Global.mode == 1:
-							speed = randi_range(300,400)
+							@warning_ignore("integer_division")
+							speed = (randi_range(300,400)*speedup)/ speeddown
 						elif Global.mode == 2:
-							speed = randi_range(400,520)
+							@warning_ignore("integer_division")
+							speed = (randi_range(400,520)*speedup)/ speeddown
 						elif Global.mode == 3:
-							speed = randi_range(480,600)
+							@warning_ignore("integer_division")
+							speed = (randi_range(480,600)*speedup)/ speeddown
 					"Bill":
 						get_node("Sprite2D").texture = bill
 						match Global.mode:
 							1:
-								speed = 0 + position.distance_to(chasepos) + randi_range(-150,50)
+								speed = (0 + (position.distance_to(chasepos)/ speeddown) + randi_range(-150,50))*speedup
 							2:
-								speed = 115 + position.distance_to(chasepos) + randi_range(-100,150)
+								speed = (115 + (position.distance_to(chasepos)/ speeddown) + randi_range(-100,150))*speedup
 							3:
-								speed = 225 + position.distance_to(chasepos) + randi_range(-50,200)
-						chasepos.x += randi_range(-200,200)
-						chasepos.y += randi_range(-100,100)
+								speed = (225 + (position.distance_to(chasepos)/ speeddown) + randi_range(-50,200))*speedup
+						chasepos.x += randi_range(-200*speeddown,200*speeddown)
+						chasepos.y += randi_range(-100*speeddown,100*speeddown)
 			chasing = true
 			position += position.direction_to(chasepos) * speed * delta
 			if position.distance_to(chasepos) < 30:
@@ -92,7 +125,7 @@ func _physics_process(delta: float) -> void:
 					"Redson":
 						match Global.mode:
 							1:
-								if chased >= 5:
+								if chased >= 5*speeddown:
 									chasing = true
 									get_node("Sprite2D").texture = s2
 									if rotate < 240:
@@ -105,7 +138,7 @@ func _physics_process(delta: float) -> void:
 										nocollid = false
 
 							2:
-								if chased >= 7:
+								if chased >= 7*speeddown:
 									chasing = true
 									get_node("Sprite2D").texture = s2
 									if rotate < 120:
@@ -118,7 +151,7 @@ func _physics_process(delta: float) -> void:
 										nocollid = false
 
 							3:
-								if chased >= 10:
+								if chased >= 10*speeddown:
 									chasing = true
 									get_node("Sprite2D").texture = s2
 									if rotate < 120:
@@ -130,7 +163,7 @@ func _physics_process(delta: float) -> void:
 										rotate = 0
 										nocollid = false
 					"Bill":
-						if chased >= 8:
+						if chased >= 8*speeddown:
 							chasing = true
 							speed = 0
 							if rotate < 60:
@@ -158,22 +191,28 @@ func _physics_process(delta: float) -> void:
 				get_node("Sprite2D").texture = c1
 				match Global.mode:
 					1:
-						speed = 300
+						@warning_ignore("integer_division")
+						speed = (300*speedup)/ speeddown
 					2:
-						speed = 380
+						@warning_ignore("integer_division")
+						speed = (380*speedup)/ speeddown
 					3:
-						speed = 450
+						@warning_ignore("integer_division")
+						speed = (450*speedup)/ speeddown
 			else:
 				match Global.mode:
 					1:
-						speed = 200
+						@warning_ignore("integer_division")
+						speed = (200*speedup)/ speeddown
 					2:
-						speed = 300
+						@warning_ignore("integer_division")
+						speed = (300*speedup)/ speeddown
 					3:
-						speed = 400
+						@warning_ignore("integer_division")
+						speed = (400*speedup)/ speeddown
 				get_node("Sprite2D").texture = c2
 				rotate += 1
-				if rotate > 400:
+				if rotate > 400*speeddown:
 					chased = 0
 					rotate = 0
 			if chasing == false:
