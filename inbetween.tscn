@@ -123,7 +123,8 @@ color = Color(0, 0, 0, 0.490196)
 offset_top = 32.0
 offset_right = 1153.0
 offset_bottom = 120.0
-text = "Unlocked: Paul"
+scale = Vector2(0.89, 0.89)
+text = "Unlocked: Chromatic"
 label_settings = SubResource("LabelSettings_bg4wu")
 horizontal_alignment = 1
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://cmr5ek6ub50xq"]
+[gd_scene load_steps=30 format=3 uid="uid://cmr5ek6ub50xq"]
 
 [ext_resource type="Script" uid="uid://b7oued5ecdg7g" path="res://Scripts/settings.gd" id="1_x2hje"]
 [ext_resource type="Texture2D" uid="uid://ccuxiimn1ex0e" path="res://Players/Bob/Bob1.png" id="2_gc0em"]
+[ext_resource type="Texture2D" uid="uid://cxetgfu78qqh8" path="res://Players/Crown.png" id="3_7eiv2"]
 [ext_resource type="Texture2D" uid="uid://c37y6mg1qjeer" path="res://Players/Conner/Conner1.png" id="3_71mqq"]
 [ext_resource type="Texture2D" uid="uid://caooqr8dmm372" path="res://Bullies/Redson/Redson1.png" id="3_cj1lu"]
 [ext_resource type="Texture2D" uid="uid://c02jj0nfvgp7w" path="res://Players/Paul/Paul1.png" id="4_3lj6o"]
@@ -11,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dlmwxntqig3io" path="res://Bullies/Clarence/Clarence1.png" id="6_3j6r5"]
 [ext_resource type="Texture2D" uid="uid://bx0dkmj4bpv4j" path="res://Players/Antony/Antony1.png" id="6_y43lv"]
 [ext_resource type="Texture2D" uid="uid://dswm7avlf70o1" path="res://Bullies/Jimmy/Jimmy1.png" id="8_6mhpt"]
+[ext_resource type="Texture2D" uid="uid://byvikgdrgwftj" path="res://Players/Untitled(2).png" id="8_tk3m0"]
 [ext_resource type="Texture2D" uid="uid://dkktq71aadvc8" path="res://Bullies/Snake/Snake1.png" id="10_1k4ii"]
 [ext_resource type="Texture2D" uid="uid://d2k368v1gwtdg" path="res://Bullies/Snake/Snake2.png" id="12_82xqq"]
 
@@ -30,6 +32,9 @@ font_size = 64
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_tk3m0"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdp2d"]
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_3lj6o"]
@@ -208,6 +213,13 @@ horizontal_alignment = 1
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="Crown" type="Sprite2D" parent="Bob"]
+visible = false
+z_index = 1
+position = Vector2(-1.52588e-05, -375)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_7eiv2")
+
 [node name="Conner" type="Sprite2D" parent="."]
 self_modulate = Color(0.270222, 0.270222, 0.270222, 1)
 position = Vector2(107, 428)
@@ -245,6 +257,13 @@ Bully Speed Multiplier,
 label_settings = SubResource("LabelSettings_6mhpt")
 horizontal_alignment = 1
 
+[node name="Crown" type="Sprite2D" parent="Conner"]
+visible = false
+z_index = 1
+position = Vector2(-1.52588e-05, -375)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_7eiv2")
+
 [node name="Paul" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(224, 312)
@@ -278,9 +297,16 @@ offset_bottom = 458.0
 text = "Suffocate on easy?!?"
 label_settings = SubResource("LabelSettings_ohexs")
 
+[node name="Crown" type="Sprite2D" parent="Paul"]
+visible = false
+z_index = 1
+position = Vector2(-15, -370)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_7eiv2")
+
 [node name="Poppy" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
-position = Vector2(376, 208)
+position = Vector2(385, 190)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_ohexs")
 
@@ -292,6 +318,7 @@ offset_right = 160.0
 offset_bottom = 360.0
 
 [node name="Label" type="Label" parent="Poppy"]
+z_index = 2
 offset_left = -250.0
 offset_top = 385.0
 offset_right = 257.0
@@ -303,6 +330,7 @@ label_settings = SubResource("LabelSettings_3j6r5")
 horizontal_alignment = 1
 
 [node name="UnlockText" type="Label" parent="Poppy"]
+z_index = 2
 offset_left = -415.0
 offset_top = 375.0
 offset_right = 465.0
@@ -311,6 +339,13 @@ text = "Win with less than
 20 breath."
 label_settings = SubResource("LabelSettings_82xqq")
 horizontal_alignment = 1
+
+[node name="Crown" type="Sprite2D" parent="Poppy"]
+visible = false
+z_index = 1
+position = Vector2(-5.00002, -340)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_7eiv2")
 
 [node name="Antony" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
@@ -350,33 +385,54 @@ Clarence"
 label_settings = SubResource("LabelSettings_tk3m0")
 horizontal_alignment = 1
 
-[node name="6" type="Sprite2D" parent="."]
+[node name="Crown" type="Sprite2D" parent="Antony"]
+visible = false
+z_index = 1
+position = Vector2(-1.52588e-05, -390)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_7eiv2")
+
+[node name="Chromatic" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(496, 328)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_gc0em")
+texture = ExtResource("8_tk3m0")
 
-[node name="6Bttn" type="Button" parent="6"]
+[node name="ChromaticBttn" type="Button" parent="Chromatic"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -160.0
 offset_top = -360.0
 offset_right = 160.0
 offset_bottom = 360.0
 
-[node name="Label" type="Label" parent="6"]
+[node name="Label" type="Label" parent="Chromatic"]
 offset_left = -240.0
 offset_top = 360.0
 offset_right = 219.0
 offset_bottom = 539.0
-text = "Bob.
-Starter Runner.
-Nothing Special."
+text = "Chromatic.
+Chimera.
+All Runners 
+combined."
 label_settings = SubResource("LabelSettings_3j6r5")
 horizontal_alignment = 1
 
-[node name="UnlockText" type="Label" parent="6"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="UnlockText" type="Label" parent="Chromatic"]
+visible = false
+offset_left = -235.0
+offset_top = 365.0
+offset_right = 241.0
+offset_bottom = 544.0
+text = "Win with every 
+player on hard"
+label_settings = SubResource("LabelSettings_fdp2d")
+
+[node name="Crown" type="Sprite2D" parent="Chromatic"]
+visible = false
+z_index = 1
+position = Vector2(-1.52588e-05, -370)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_7eiv2")
 
 [node name="Redson" type="Sprite2D" parent="."]
 position = Vector2(1080, 176)
@@ -642,7 +698,7 @@ texture = ExtResource("12_82xqq")
 [connection signal="pressed" from="Paul/PaulBttn" to="." method="_on_3_bttn_pressed"]
 [connection signal="pressed" from="Poppy/PoppyBttn" to="." method="_on_4_bttn_pressed"]
 [connection signal="pressed" from="Antony/AntonyBttn" to="." method="_on_5_bttn_pressed"]
-[connection signal="pressed" from="6/6Bttn" to="." method="_on_6_bttn_pressed"]
+[connection signal="pressed" from="Chromatic/ChromaticBttn" to="." method="_on_6_bttn_pressed"]
 [connection signal="pressed" from="Redson/RedsonBttn" to="." method="_on_redson_bttn_pressed"]
 [connection signal="pressed" from="Bill/BillBttn" to="." method="_on_bill_bttn_pressed"]
 [connection signal="pressed" from="Clarence/ClarenceBttn" to="." method="_on_9_bttn_pressed"]

@@ -30,6 +30,12 @@ var s1 = preload("res://Players/Secret/Secret1.png")
 var s2 = preload("res://Players/Secret/Secret2.png")
 var s3 = preload("res://Players/Secret/Secret3.png")
 
+var ch1 = preload("res://Players/Chromatic/Chromatic1.png")
+var ch2 = preload("res://Players/Chromatic/Chromatic2.png")
+var ch3 = preload("res://Players/Chromatic/Chromatic3.png")
+var ch4 = preload("res://Players/Chromatic/Chromatic4.png")
+var ch5 = preload("res://Players/Chromatic/Chromatic5.png")
+
 var speed = 400.0
 var breathingdivide = 1
 var breathingmultiply = 1
@@ -106,6 +112,20 @@ func _ready() -> void:
 			Global.bullyspeedmulti += 1
 			Global.scoreup = 2
 			Global.evilcoin = true
+		"Chromatic":
+			get_node("Sprite2D").texture = ch1
+			Global.chrome = true
+			$"../Inhaler".visible = true
+			Global.score += 5
+			speed = 700
+			if Global.inhale:
+				Global.breath += 40
+			else:
+				Global.breath += 20
+			$Blindness.visible = true
+			Global.scoreup = 2
+			breathingmultiply = 2
+			breathingadd = 3
 	if Global.inhale:
 		breathingmultiply += 1
 	
@@ -114,7 +134,7 @@ func _physics_process(_delta: float) -> void:
 	if firsttime == true:
 		firsttime = false
 		while Global.mode == 2 or Global.mode == 1:
-			if Global.Player == "Antony" or Global.inhale:
+			if Global.Player == "Antony" or Global.inhale or Global.Player == "Chromatic":
 				if breathingdown == false:
 					get_node("Timer").start(2)
 					breathingdown = true
@@ -138,7 +158,7 @@ func _physics_process(_delta: float) -> void:
 						@warning_ignore("integer_division")
 						Global.breath += (1+breathup)/breathingdivide
 						await get_tree().create_timer(0.1).timeout
-						if Global.breath == 100.0:
+						if Global.breath >= 100.0:
 							breathed = true
 					breathingdown = false
 			
@@ -199,7 +219,7 @@ func _physics_process(_delta: float) -> void:
 		
 	var directionX := Input.get_axis("Left", "Right")
 	var directionY := Input.get_axis("Up", "Down")
-	if Global.Player == "Conner":
+	if Global.Player == "Conner" or Global.Player == "Chromatic":
 		if not directionY and directionX:
 			velocity.x = directionX * speed
 		else:
@@ -210,7 +230,7 @@ func _physics_process(_delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 	
-	if Global.Player == "Conner":
+	if Global.Player == "Conner" or Global.Player == "Chromatic":
 		if not directionX and directionY:
 			velocity.y = directionY * speed
 		else:
@@ -303,9 +323,34 @@ func _physics_process(_delta: float) -> void:
 			elif directionX > 0:
 				get_node("Sprite2D").texture = s2
 				get_node("Sprite2D").flip_h = false
-			
+		"Chromatic":
+			if inhale > 0:
+				speed = 850
+				inhale -= 1
+				if directionY < 0:
+					get_node("Sprite2D").texture = ch3
+				elif directionY > 0:
+					get_node("Sprite2D").texture = ch4
+				elif directionX < 0:
+					get_node("Sprite2D").texture = ch5
+					get_node("Sprite2D").flip_h = true
+				elif directionX > 0:
+					get_node("Sprite2D").texture = ch5
+					get_node("Sprite2D").flip_h = false
+			else:
+				speed = 700
+				if directionY < 0:
+					get_node("Sprite2D").texture = ch3
+				elif directionY > 0:
+					get_node("Sprite2D").texture = ch1
+				elif directionX < 0:
+					get_node("Sprite2D").texture = ch2
+					get_node("Sprite2D").flip_h = true
+				elif directionX > 0:
+					get_node("Sprite2D").texture = ch2
+					get_node("Sprite2D").flip_h = false
 		
-	if Global.mode == 3 and not Global.Player == "Antony" and not Global.inhale:
+	if Global.mode == 3 and not Global.Player == "Antony" and not Global.inhale and not Global.Player == "Chromatic":
 		if Input.is_action_just_pressed("Breath") and Global.breath < 75.0:
 			if breathingup == false:
 				get_node("Timer2").start(1.5)
@@ -317,32 +362,32 @@ func _physics_process(_delta: float) -> void:
 
 
 	if Global.score < 0:
-		if Global.Player == "Paul":
+		if Global.Player == "Paul" or Global.Player == "Chromatic":
 			Global.rebirth = true
 			var index = 0
 			for thing in Global.Unlocks:
-				if thing == 1 and index != 2:
+				if thing == 1 or thing == 2 and index != 2 and index != 5:
 					currentunlocked.append(unlocks[index])
 					index += 1
 			Global.Player = str(currentunlocked[randi_range(0,currentunlocked.size()-1)])
 			get_tree().change_scene_to_file("res://BaseLevel.tscn")
-		elif not Global.Player == "Paul":
+		elif not Global.Player == "Paul" and not Global.Player == "Chromatic":
 			Global.winlose = 2
 			get_tree().change_scene_to_file("res://inbetween.tscn")
 	elif Global.score >= 50:
 		Global.winlose = 1
 		get_tree().change_scene_to_file("res://inbetween.tscn")
 	elif Global.breath <= 0:
-		if Global.Player == "Paul":
+		if Global.Player == "Paul" or Global.Player == "Chromatic":
 			Global.rebirth = true
 			var index = 0
 			for thing in Global.Unlocks:
-				if thing == 1 and index != 2:
+				if thing == 1 or thing == 2 and index != 2 and index != 5:
 					currentunlocked.append(unlocks[index])
 					index += 1
 			Global.Player = str(currentunlocked[randi_range(0,currentunlocked.size()-1)])
 			get_tree().change_scene_to_file("res://BaseLevel.tscn")
-		elif not Global.Player == "Paul":
+		elif not Global.Player == "Paul" and not Global.Player == "Chromatic":
 			Global.winlose = 3
 			get_tree().change_scene_to_file("res://inbetween.tscn")
 	move_and_slide()

@@ -10,7 +10,7 @@ var evilchangeplace = true
 func _ready() -> void:
 	#await get_tree().create_timer(1).timeout
 	if self.name == "Inhaler":
-		if Global.inhale or Global.Player == "Antony":
+		if Global.inhale or Global.Player == "Antony" or Global.Player == "Chromatic":
 			$Sprite2D.texture = inhaler
 			$Sprite2D.scale = Vector2(0.15,0.15)
 			$CoinBox.scale = Vector2(0.132,0.12)
@@ -61,7 +61,7 @@ func _process(_delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		if self.name == "Inhaler":
-			if Global.inhale and Global.Player == "Antony":
+			if Global.inhale and (Global.Player == "Antony" or Global.Player == "Chromatic"):
 				if Global.mode == 2 or Global.mode == 1:
 					if Global.breath <= 130.0:
 						Global.breath += 10.0

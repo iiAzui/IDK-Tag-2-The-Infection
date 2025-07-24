@@ -6,11 +6,13 @@ var Conner = preload("res://Players/Conner/Conner1.png")
 var Paul = preload("res://Players/Paul/Paul1.png")
 var Poppy = preload("res://Players/Poppy/Poppy1.png")
 var Antony = preload("res://Players/Antony/Antony1.png")
+var Chromatic = preload("res://Players/Chromatic/Chromatic1.png")
 
 const Bill = preload("res://Bullies/Classic/Bill1.png")
 const Clarence = preload("res://Bullies/Clarence/Clarence1.png")
 const Jimmy = preload("res://Bullies/Jimmy/Jimmy1.png")
 const Snake = preload("res://Bullies/Snake/Snake4.png")
+
 
 const SAVE = "user://save.save"
 # Called when the node enters the scene tree for the first time.
@@ -25,6 +27,18 @@ func _ready() -> void:
 			get_node("Suffocate").visible = false
 			get_node("Tagged").visible = false
 			if Global.bullyspeedmulti > 0:
+				if Global.mode == 3:
+					if Global.rebirth == true:
+						if Global.chrome:
+							Global.Unlocks[5] = 2
+						else:
+							Global.Unlocks[2] = 2
+					else:
+						Global.Unlocks[Global.unlocksname.bsearch(Global.Player)] = 2
+				if Global.Unlocks[0] == 2 and Global.Unlocks[1] == 2 and Global.Unlocks[2] == 2 and Global.Unlocks[3] == 2 and Global.Unlocks[4] == 2:
+					Global.Unlocks[5] = 1
+					unlocked("Chromatic",Chromatic)
+					await goahead
 				if Global.mode == 3:
 					if Global.Unlocks[7] == 0:
 						Global.Unlocks[7] = 1
@@ -107,11 +121,20 @@ func _ready() -> void:
 
 func _on_play_again_pressed() -> void:
 	if Global.rebirth == true:
-		Global.Player = "Paul"
+		if Global.chrome:
+			Global.Player = "Chromatic"
+		else:
+			Global.Player = "Paul"
 		Global.rebirth = false
 	get_tree().change_scene_to_file("res://BaseLevel.tscn")
 
 func _on_menu_pressed() -> void:
+	if Global.rebirth == true:
+		if Global.chrome:
+			Global.Player = "Chromatic"
+		else:
+			Global.Player = "Paul"
+		Global.rebirth = false
 	Global.rebirth = false
 	get_tree().change_scene_to_file("res://main_menu.tscn")
 
@@ -126,6 +149,10 @@ func unlocked(thing,spritepath):
 	else:
 		$"Unlocked!/Bob1".scale = Vector2(0.25,0.25)
 		$"Unlocked!/Bob1".position.x = 598
+	if thing == "Chromatic":
+		$"Unlocked!/Label".scale = Vector2(0.89,0.89)
+	else:
+		$"Unlocked!/Label".scale = Vector2(1,1)
 	$"Unlocked!/VideoStreamPlayer".play()
 	$"Unlocked!".visible = true
 	$"Unlocked!/Label".text = "Unlocked: "+str(thing)

@@ -3,6 +3,8 @@ extends Node2D
 var index = 0
 var unlocks = Global.unlocksname
 
+const chromatic = preload("res://Players/Chromatic/Chromatic1.png")
+
 func _ready() -> void:
 	if Global.Player != "Secret":
 		%PB.position = Global.PBPos
@@ -25,14 +27,18 @@ func _ready() -> void:
 		
 			
 	for thing in Global.Unlocks:
-		if thing == 1:
+		if thing == 1 or thing == 2:
 			if unlocks[index] == "Snake":
 				$Snake2.self_modulate = Color("ffffff")
 				$Snake3.self_modulate = Color("ffffff")
+			if thing == 2:
+				get_node(unlocks[index]+"/Crown").visible = true
 			get_node(unlocks[index]).self_modulate = Color("ffffff")
 			get_node(str(unlocks[index])+ "/"+str(unlocks[index])+"Bttn").disabled = false
 			get_node(str(unlocks[index])+ "/UnlockText").visible = false
 			get_node(str(unlocks[index])+ "/Label").visible = true
+			if index == 5:
+				$Chromatic.texture = chromatic
 		else:
 			get_node(unlocks[index]).self_modulate = Color("454545")
 			get_node(str(unlocks[index])+ "/UnlockText").visible = true

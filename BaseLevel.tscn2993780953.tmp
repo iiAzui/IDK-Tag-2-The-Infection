@@ -1,0 +1,111 @@
+[gd_scene load_steps=11 format=3 uid="uid://dufwknypk64tf"]
+
+[ext_resource type="PackedScene" uid="uid://h8fuog3yqmwi" path="res://Players/player.tscn" id="1_5x8ra"]
+[ext_resource type="Texture2D" uid="uid://b688le6847xac" path="res://Why-Is-Asphalt-Black.jpg" id="2_o2j4u"]
+[ext_resource type="PackedScene" uid="uid://dabuo80nolctl" path="res://Bullies/Redson/Redson.tscn" id="3_o2j4u"]
+[ext_resource type="PackedScene" uid="uid://dcoi6hhg4mvd0" path="res://coinjunk/coin.tscn" id="4_knq2t"]
+[ext_resource type="Texture2D" uid="uid://be4pvynob8n3a" path="res://eyestrain/eye3.png" id="5_cwwxe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lktsq"]
+size = Vector2(100, 1310)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30aht"]
+size = Vector2(2370, 49)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o2j4u"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_knq2t"]
+font_size = 64
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cwwxe"]
+vertices = PackedVector2Array(1154.91, -639.094, 1144.08, 625.07, -1159.95, 641.922, -1154.04, -661.898)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1164, -672, 1165, -649, 1154, 635, -1170, 652)])
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_5x8ra")]
+position = Vector2(-1029, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -4096
+position = Vector2(3.00009, 2.99992)
+scale = Vector2(1.72206, 1.46858)
+texture = ExtResource("2_o2j4u")
+
+[node name="Border" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(-1188, 3)
+shape = SubResource("RectangleShape2D_lktsq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border"]
+position = Vector2(1193, 3)
+shape = SubResource("RectangleShape2D_lktsq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border"]
+position = Vector2(-19, -665.5)
+shape = SubResource("RectangleShape2D_30aht")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Border"]
+position = Vector2(-15, 661)
+shape = SubResource("RectangleShape2D_30aht")
+
+[node name="Bully" parent="." node_paths=PackedStringArray("chase") groups=["Enemies"] instance=ExtResource("3_o2j4u")]
+position = Vector2(830, -1)
+chase = NodePath("../Player")
+
+[node name="Child1" parent="." node_paths=PackedStringArray("chase") groups=["Enemies"] instance=ExtResource("3_o2j4u")]
+position = Vector2(945, 3)
+scale = Vector2(0.75, 0.75)
+chase = NodePath("../Player")
+
+[node name="Child2" parent="." node_paths=PackedStringArray("chase") groups=["Enemies"] instance=ExtResource("3_o2j4u")]
+position = Vector2(1031, 6)
+scale = Vector2(0.5, 0.5)
+chase = NodePath("../Player")
+
+[node name="Label" type="Label" parent="."]
+z_index = 4096
+offset_left = -177.0
+offset_top = 405.0
+offset_right = 176.0
+offset_bottom = 493.0
+text = "Breath: 100"
+label_settings = SubResource("LabelSettings_o2j4u")
+horizontal_alignment = 1
+
+[node name="Coin" parent="." instance=ExtResource("4_knq2t")]
+position = Vector2(-309, -399)
+
+[node name="Inhaler" parent="." instance=ExtResource("4_knq2t")]
+visible = false
+position = Vector2(-309, -399)
+
+[node name="EvilCoin" parent="." instance=ExtResource("4_knq2t")]
+position = Vector2(-309, -399)
+
+[node name="EvilCoin2" parent="." instance=ExtResource("4_knq2t")]
+position = Vector2(-309, -399)
+
+[node name="Score" type="Label" parent="."]
+z_index = 4096
+offset_left = -1135.0
+offset_top = -642.0
+offset_right = -895.0
+offset_bottom = -554.0
+text = "Coins: 0"
+label_settings = SubResource("LabelSettings_knq2t")
+
+[node name="strain" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.172549)
+self_modulate = Color(1, 1, 1, 0.172549)
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("5_cwwxe")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_cwwxe")

@@ -23,7 +23,7 @@ func _ready() -> void:
 		file.close()
 	index = 0
 	for thing in Global.Unlocks:
-		if thing == 1:
+		if thing == 1 or thing == 2:
 			if index > 5:
 				var unmatched = true
 				if index == 10:
@@ -69,8 +69,11 @@ func _ready() -> void:
 								#unmatched = false
 			else:
 				var unmatched = true
+				if index == 5:
+					unmatched = false
+					$Player6.visible = true
 				while unmatched:
-					match randi_range(1,6):
+					match randi_range(1,5):
 						1:
 							if pused[0] == 0:
 								$Player1.texture = unlocks[index]
@@ -101,12 +104,12 @@ func _ready() -> void:
 								$Player5.visible = true
 								pused[4] = 1
 								unmatched = false
-						6:
-							if pused[5] == 0:
-								$Player6.texture = unlocks[index]
-								$Player6.visible = true
-								pused[5] = 1
-								unmatched = false
+						#6:
+							#if pused[5] == 0:
+								#$Player6.texture = unlocks[index]
+								#$Player6.visible = true
+								#pused[5] = 1
+								#unmatched = false
 		index += 1
 
 func _on_play_pressed() -> void:
