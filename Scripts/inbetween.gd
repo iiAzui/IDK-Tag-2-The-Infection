@@ -15,6 +15,7 @@ const Snake = preload("res://Bullies/Snake/Snake4.png")
 const SAVE = "user://save.save"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.snakes = 0
 	if Global.Player == "Secret":
 		Global.bullyspeedmulti -= 1
 	match Global.winlose:
@@ -108,7 +109,6 @@ func _on_play_again_pressed() -> void:
 	if Global.rebirth == true:
 		Global.Player = "Paul"
 		Global.rebirth = false
-	Global.snakes = 0
 	get_tree().change_scene_to_file("res://BaseLevel.tscn")
 
 func _on_menu_pressed() -> void:

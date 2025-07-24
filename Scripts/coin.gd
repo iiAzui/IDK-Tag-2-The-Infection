@@ -10,12 +10,15 @@ var evilchangeplace = true
 func _ready() -> void:
 	#await get_tree().create_timer(1).timeout
 	if self.name == "Inhaler":
-		$Sprite2D.texture = inhaler
-		$Sprite2D.scale = Vector2(0.15,0.15)
-		$CoinBox.scale = Vector2(0.132,0.12)
-		$CoinBox.texture = inhalebox
-		$Inhaler/CollisionShape2D.disabled = false
-		$Area2D/CollisionShape2D.disabled = true
+		if Global.inhale or Global.Player == "Antony":
+			$Sprite2D.texture = inhaler
+			$Sprite2D.scale = Vector2(0.15,0.15)
+			$CoinBox.scale = Vector2(0.132,0.12)
+			$CoinBox.texture = inhalebox
+			$Inhaler/CollisionShape2D.disabled = false
+			$Area2D/CollisionShape2D.disabled = true
+		else:
+			self.queue_free()
 	if self.name == "EvilCoin" or self.name == "EvilCoin2":
 		if Global.evilcoin == true:
 			$Sprite2D.self_modulate = Color("c9c9c9")
