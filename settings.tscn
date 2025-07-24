@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmr5ek6ub50xq"]
+[gd_scene load_steps=27 format=3 uid="uid://cmr5ek6ub50xq"]
 
 [ext_resource type="Script" uid="uid://b7oued5ecdg7g" path="res://Scripts/settings.gd" id="1_x2hje"]
 [ext_resource type="Texture2D" uid="uid://ccuxiimn1ex0e" path="res://Players/Bob/Bob1.png" id="2_gc0em"]
@@ -9,7 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://stef01v4wmxx" path="res://Bullies/Classic/Bill1.png" id="4_cj1lu"]
 [ext_resource type="Texture2D" uid="uid://brc8f8pswhqo6" path="res://Players/Poppy/Poppy1.png" id="5_ohexs"]
 [ext_resource type="Texture2D" uid="uid://dlmwxntqig3io" path="res://Bullies/Clarence/Clarence1.png" id="6_3j6r5"]
+[ext_resource type="Texture2D" uid="uid://bx0dkmj4bpv4j" path="res://Players/Antony/Antony1.png" id="6_y43lv"]
 [ext_resource type="Texture2D" uid="uid://dswm7avlf70o1" path="res://Bullies/Jimmy/Jimmy1.png" id="8_6mhpt"]
+[ext_resource type="Texture2D" uid="uid://dkktq71aadvc8" path="res://Bullies/Snake/Snake1.png" id="10_1k4ii"]
+[ext_resource type="Texture2D" uid="uid://d2k368v1gwtdg" path="res://Bullies/Snake/Snake2.png" id="12_82xqq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jwo76"]
 font_size = 48
@@ -26,6 +29,9 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_82xqq"]
 font_size = 64
 
+[sub_resource type="LabelSettings" id="LabelSettings_tk3m0"]
+font_size = 64
+
 [sub_resource type="LabelSettings" id="LabelSettings_3lj6o"]
 font_size = 64
 
@@ -36,6 +42,9 @@ font_size = 58
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_1k4ii"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_7eiv2"]
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_gc0em"]
@@ -256,7 +265,7 @@ offset_top = 365.0
 offset_right = 359.0
 offset_bottom = 635.0
 text = "Paul.
-Weird Kid.
+Geek.
 Random Rebirth on loss."
 label_settings = SubResource("LabelSettings_3j6r5")
 horizontal_alignment = 1
@@ -283,13 +292,12 @@ offset_right = 160.0
 offset_bottom = 360.0
 
 [node name="Label" type="Label" parent="Poppy"]
-visible = false
 offset_left = -250.0
 offset_top = 385.0
 offset_right = 257.0
 offset_bottom = 655.0
 text = "Poppy.
-Nerd.
+Weird Kid.
 Lost her glasses."
 label_settings = SubResource("LabelSettings_3j6r5")
 horizontal_alignment = 1
@@ -304,33 +312,43 @@ text = "Win with less than
 label_settings = SubResource("LabelSettings_82xqq")
 horizontal_alignment = 1
 
-[node name="5" type="Sprite2D" parent="."]
+[node name="Antony" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
-position = Vector2(376, 448)
+position = Vector2(379, 417)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_gc0em")
+texture = ExtResource("6_y43lv")
 
-[node name="5Bttn" type="Button" parent="5"]
+[node name="AntonyBttn" type="Button" parent="Antony"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -160.0
 offset_top = -360.0
 offset_right = 160.0
 offset_bottom = 360.0
 
-[node name="Label" type="Label" parent="5"]
-offset_left = -240.0
-offset_top = 360.0
-offset_right = 219.0
-offset_bottom = 539.0
-text = "Bob.
-Starter Runner.
-Nothing Special."
+[node name="Label" type="Label" parent="Antony"]
+visible = false
+offset_left = -345.0
+offset_top = 345.0
+offset_right = 334.0
+offset_bottom = 797.0
+text = "Antony.
+Nerd.
+Pick up inhalers 
+to breathe.
+Start with more coins."
 label_settings = SubResource("LabelSettings_3j6r5")
 horizontal_alignment = 1
 
-[node name="UnlockText" type="Label" parent="5"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="UnlockText" type="Label" parent="Antony"]
+offset_left = -355.0
+offset_top = 325.0
+offset_right = 394.0
+offset_bottom = 595.0
+text = "Win with Asthma Mode
+as Conner with 
+Clarence"
+label_settings = SubResource("LabelSettings_tk3m0")
+horizontal_alignment = 1
 
 [node name="6" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
@@ -408,6 +426,7 @@ horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="Bill"]
 visible = false
+z_index = 1
 offset_left = -395.0
 offset_top = 285.0
 offset_right = 370.0
@@ -496,33 +515,42 @@ offset_bottom = 383.0
 text = "Lose at 45-49 coins."
 label_settings = SubResource("LabelSettings_1k4ii")
 
-[node name="11" type="Sprite2D" parent="."]
+[node name="Snake" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(800, 432)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_cj1lu")
+texture = ExtResource("10_1k4ii")
 
-[node name="11Bttn" type="Button" parent="11"]
+[node name="SnakeBttn" type="Button" parent="Snake"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -260.0
 offset_top = -245.0
 offset_right = 260.0
 offset_bottom = 275.0
 
-[node name="Label" type="Label" parent="11"]
-offset_left = -240.0
-offset_top = 360.0
-offset_right = 219.0
-offset_bottom = 539.0
-text = "Bob.
-Starter Runner.
-Nothing Special."
+[node name="Label" type="Label" parent="Snake"]
+visible = false
+z_index = 1
+offset_left = -390.0
+offset_top = 290.0
+offset_right = 393.0
+offset_bottom = 651.0
+text = "Snake.
+Snake.
+Posions you making 
+you breathe more."
 label_settings = SubResource("LabelSettings_3j6r5")
 horizontal_alignment = 1
 
-[node name="UnlockText" type="Label" parent="11"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="UnlockText" type="Label" parent="Snake"]
+offset_left = -345.0
+offset_top = 310.0
+offset_right = 358.0
+offset_bottom = 489.0
+text = "Win on Hard with 
++1 child bully modifier."
+label_settings = SubResource("LabelSettings_7eiv2")
+horizontal_alignment = 1
 
 [node name="12" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
@@ -594,6 +622,18 @@ text = "More"
 label_settings = SubResource("LabelSettings_y43lv")
 horizontal_alignment = 1
 
+[node name="Snake2" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(906, 471)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_82xqq")
+
+[node name="Snake3" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+position = Vector2(989, 545)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_82xqq")
+
 [connection signal="pressed" from="Easy" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="Normal" to="." method="_on_normal_pressed"]
 [connection signal="pressed" from="Hard" to="." method="_on_hard_pressed"]
@@ -601,13 +641,13 @@ horizontal_alignment = 1
 [connection signal="pressed" from="Conner/ConnerBttn" to="." method="_on_2_bttn_pressed"]
 [connection signal="pressed" from="Paul/PaulBttn" to="." method="_on_3_bttn_pressed"]
 [connection signal="pressed" from="Poppy/PoppyBttn" to="." method="_on_4_bttn_pressed"]
-[connection signal="pressed" from="5/5Bttn" to="." method="_on_5_bttn_pressed"]
+[connection signal="pressed" from="Antony/AntonyBttn" to="." method="_on_5_bttn_pressed"]
 [connection signal="pressed" from="6/6Bttn" to="." method="_on_6_bttn_pressed"]
 [connection signal="pressed" from="Redson/RedsonBttn" to="." method="_on_redson_bttn_pressed"]
 [connection signal="pressed" from="Bill/BillBttn" to="." method="_on_bill_bttn_pressed"]
 [connection signal="pressed" from="Clarence/ClarenceBttn" to="." method="_on_9_bttn_pressed"]
 [connection signal="pressed" from="Jimmy/JimmyBttn" to="." method="_on_10_bttn_pressed"]
-[connection signal="pressed" from="11/11Bttn" to="." method="_on_11_bttn_pressed"]
+[connection signal="pressed" from="Snake/SnakeBttn" to="." method="_on_11_bttn_pressed"]
 [connection signal="pressed" from="12/12Bttn" to="." method="_on_12_bttn_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="More" to="." method="_on_more_pressed"]

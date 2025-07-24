@@ -5,14 +5,18 @@ signal goahead
 var Conner = preload("res://Players/Conner/Conner1.png")
 var Paul = preload("res://Players/Paul/Paul1.png")
 var Poppy = preload("res://Players/Poppy/Poppy1.png")
+var Antony = preload("res://Players/Antony/Antony1.png")
 
 const Bill = preload("res://Bullies/Classic/Bill1.png")
 const Clarence = preload("res://Bullies/Clarence/Clarence1.png")
 const Jimmy = preload("res://Bullies/Jimmy/Jimmy1.png")
+const Snake = preload("res://Bullies/Snake/Snake4.png")
 
 const SAVE = "user://save.save"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if Global.Player == "Secret":
+		Global.bullyspeedmulti -= 1
 	match Global.winlose:
 		1:
 			get_node("You Win").visible = true
@@ -20,10 +24,15 @@ func _ready() -> void:
 			get_node("Suffocate").visible = false
 			get_node("Tagged").visible = false
 			if Global.bullyspeedmulti > 0:
-				if Global.mode == 3 and Global.Unlocks[7] == 0:
-					Global.Unlocks[7] = 1
-					unlocked("Bill",Bill)
-					await goahead
+				if Global.mode == 3:
+					if Global.Unlocks[7] == 0:
+						Global.Unlocks[7] = 1
+						unlocked("Bill",Bill)
+						await goahead
+					if Global.Unlocks[10] == 0 and Global.addchild == true:
+						Global.Unlocks[10] = 1
+						unlocked("Snake",Snake)
+						await goahead
 				if Global.mode == 2 or Global.mode == 3:
 					Global.nrmwins += 1
 					if Global.nrmwins == 3 and Global.Unlocks[8] == 0:
@@ -33,6 +42,10 @@ func _ready() -> void:
 				if Global.breath < 20 and Global.Unlocks[3] == 0:
 					Global.Unlocks[3] = 1
 					unlocked("Poppy",Poppy)
+					await goahead
+				if Global.Unlocks[4] == 0 and Global.Player == "Conner" and Global.Bully == "Clarence":
+					Global.Unlocks[4] = 1
+					unlocked("Antony",Antony)
 					await goahead
 
 		2:
@@ -95,6 +108,7 @@ func _on_play_again_pressed() -> void:
 	if Global.rebirth == true:
 		Global.Player = "Paul"
 		Global.rebirth = false
+	Global.snakes = 0
 	get_tree().change_scene_to_file("res://BaseLevel.tscn")
 
 func _on_menu_pressed() -> void:
@@ -106,6 +120,12 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 	
 func unlocked(thing,spritepath):
+	if thing == "Snake":
+		$"Unlocked!/Bob1".scale = Vector2(1,1)
+		$"Unlocked!/Bob1".position.x = 720
+	else:
+		$"Unlocked!/Bob1".scale = Vector2(0.25,0.25)
+		$"Unlocked!/Bob1".position.x = 598
 	$"Unlocked!/VideoStreamPlayer".play()
 	$"Unlocked!".visible = true
 	$"Unlocked!/Label".text = "Unlocked: "+str(thing)

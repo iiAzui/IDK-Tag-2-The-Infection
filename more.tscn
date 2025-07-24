@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://mkjdjribfg52"]
+[gd_scene load_steps=10 format=3 uid="uid://mkjdjribfg52"]
 
 [ext_resource type="Script" uid="uid://cxh44fvpfb3qr" path="res://Scripts/more.gd" id="1_mpfli"]
+[ext_resource type="Texture2D" uid="uid://cm0yk1jx2vtku" path="res://Players/Secret/Secret.png" id="2_ps4bi"]
+[ext_resource type="Texture2D" uid="uid://c563756r5mpl0" path="res://coinjunk/coinbox.png" id="3_fjo8k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mpfli"]
 font_size = 32
@@ -16,6 +18,9 @@ font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_o32xp"]
 font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_ia8dj"]
+font_size = 64
 
 [node name="More" type="Node2D"]
 script = ExtResource("1_mpfli")
@@ -100,6 +105,22 @@ text = "Evil Coins"
 label_settings = SubResource("LabelSettings_mpfli")
 horizontal_alignment = 1
 
+[node name="Inhaler" type="Button" parent="."]
+offset_left = 387.0
+offset_top = 213.0
+offset_right = 650.0
+offset_bottom = 258.0
+
+[node name="Label" type="Label" parent="Inhaler"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 1.0
+offset_right = 264.0
+offset_bottom = 45.0
+text = "Asthma Mode"
+label_settings = SubResource("LabelSettings_mpfli")
+horizontal_alignment = 1
+
 [node name="BullySpeedUp" type="Button" parent="."]
 offset_left = 76.0
 offset_top = 212.0
@@ -176,8 +197,46 @@ label_settings = SubResource("LabelSettings_o32xp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Secret" type="Sprite2D" parent="."]
+position = Vector2(1060, 426)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_ps4bi")
+
+[node name="SecretBttn" type="Button" parent="Secret"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -160.0
+offset_top = -360.0
+offset_right = 160.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="Secret"]
+visible = false
+offset_left = -240.0
+offset_top = 360.0
+offset_right = 219.0
+offset_bottom = 539.0
+text = "Secret.
+OP Runner.
+Big Nerfs.
+Big Buffs."
+label_settings = SubResource("LabelSettings_ia8dj")
+horizontal_alignment = 1
+
+[node name="UnlockText" type="Label" parent="Secret"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PB" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-94, 141)
+scale = Vector2(0.128, 0.205714)
+texture = ExtResource("3_fjo8k")
+
 [connection signal="pressed" from="AddChild" to="." method="_on_add_child_pressed"]
 [connection signal="pressed" from="EvilCoins" to="." method="_on_evil_coins_pressed"]
+[connection signal="pressed" from="Inhaler" to="." method="_on_inhaler_pressed"]
 [connection signal="pressed" from="BullySpeedUp" to="." method="_on_bully_speed_up_pressed"]
 [connection signal="pressed" from="BullySpeedDown" to="." method="_on_bully_speed_down_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Secret/SecretBttn" to="." method="_on_secret_bttn_pressed"]

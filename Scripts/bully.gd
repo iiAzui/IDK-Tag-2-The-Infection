@@ -11,6 +11,10 @@ const c1 = preload("res://Bullies/Clarence/Clarence1.png")
 const c2 = preload("res://Bullies/Clarence/Clarence2.png")
 const j1 = preload("res://Bullies/Jimmy/Jimmy1.png")
 const j2 = preload("res://Bullies/Jimmy/Jimmy2.png")
+const snake1 = preload("res://Bullies/Snake/Snake1.png")
+const snake2 = preload("res://Bullies/Snake/Snake2.png")
+const snake3 = preload("res://Bullies/Snake/Snake3.png")
+var tail = 0
 
 var chasepos = Vector2(0,0)
 var chasing = false
@@ -36,10 +40,28 @@ func _ready():
 		"Jimmy":
 			get_node("Sprite2D").texture = j1
 			$JimmyTimer.start(4)
+		"Snake":
+			if self.name == "Bully" or self.name == "Child1" or self.name == "Child2":
+				get_node("Sprite2D").texture = snake1
+			if Global.snakes < 8:
+				if Global.snakes == 7:
+					Global.snakes += 1
+					var clone := self.duplicate()
+					clone.name = "Segment"
+					clone.get_node("Sprite2D").texture = snake3
+					clone.tail = 1
+					self.add_child(clone)
+					
+				else:
+					Global.snakes += 1
+					var clone := self.duplicate()
+					clone.name = "Segment"
+					clone.get_node("Sprite2D").texture = snake2
+					self.add_child(clone)
 	if Global.mode == 2 or Global.mode == 1:
 		if Global.addchild == true and self.name == "Child1":
 			self.visible = true
-		elif not self.name == "Bully":
+		elif not self.name == "Bully" and not self.name == "Segment":
 			self.visible = false
 			self.queue_free()
 	elif Global.mode == 3:
@@ -52,18 +74,39 @@ func _ready():
 				self.queue_free()
 	if self.name == "Child1":
 		speeddown = 2
+		if Global.Bully == "Snake":
+			Global.snakes = -2
+			if Global.snakes < 8:
+				Global.snakes += 1
+				var clone := self.duplicate()
+				clone.speeddown = 2
+				clone.get_node("Sprite2D").texture = snake2
+				clone.scale = Vector2(1,1)
+				clone.name = "Segment"
+				self.add_child(clone)
 		await get_tree().create_timer(2).timeout
 	elif self.name == "Child2":
 		speeddown = 3
+		if Global.Bully == "Snake":
+			Global.snakes = -5
+			if Global.snakes < 8:
+				Global.snakes += 1
+				var clone := self.duplicate()
+				clone.speeddown = 3
+				clone.get_node("Sprite2D").texture = snake2
+				clone.scale = Vector2(1,1)
+				clone.name = "Segment"
+				self.add_child(clone)
 		await get_tree().create_timer(4).timeout
 	await get_tree().create_timer(2).timeout
 	start = true
 	
 
 func _physics_process(delta: float) -> void:
-	
+	if speedup != Global.bullyspeedmulti:
+		speedup = Global.bullyspeedmulti
 	if start:
-		if Global.Bully != "Clarence":
+		if Global.Bully != "Clarence" and Global.Bully != "Snake":
 			if $JimmyTimer.is_stopped() and Global.Bully == "Jimmy":
 				get_node("Sprite2D").texture = j2
 				if not pause:
@@ -187,38 +230,84 @@ func _physics_process(delta: float) -> void:
 								rotate = 0
 								nocollid = false
 		else:
-			if chased == 0:
-				get_node("Sprite2D").texture = c1
-				match Global.mode:
-					1:
-						@warning_ignore("integer_division")
-						speed = (300*speedup)/ speeddown
-					2:
-						@warning_ignore("integer_division")
-						speed = (380*speedup)/ speeddown
-					3:
-						@warning_ignore("integer_division")
-						speed = (450*speedup)/ speeddown
+			if Global.Bully == "Clarence":
+				if chased == 0:
+					get_node("Sprite2D").texture = c1
+					match Global.mode:
+						1:
+							@warning_ignore("integer_division")
+							speed = (300*speedup)/ speeddown
+						2:
+							@warning_ignore("integer_division")
+							speed = (380*speedup)/ speeddown
+						3:
+							@warning_ignore("integer_division")
+							speed = (450*speedup)/ speeddown
+				else:
+					match Global.mode:
+						1:
+							@warning_ignore("integer_division")
+							speed = (200*speedup)/ speeddown
+						2:
+							@warning_ignore("integer_division")
+							speed = (300*speedup)/ speeddown
+						3:
+							@warning_ignore("integer_division")
+							speed = (400*speedup)/ speeddown
+					get_node("Sprite2D").texture = c2
+					rotate += 1
+					if rotate > 400*speeddown:
+						chased = 0
+						rotate = 0
+				if chasing == false:
+					nav.target_position = chase.global_position
+					velocity = global_position.direction_to(nav.get_next_path_position()) * speed
 			else:
-				match Global.mode:
-					1:
-						@warning_ignore("integer_division")
-						speed = (200*speedup)/ speeddown
-					2:
-						@warning_ignore("integer_division")
-						speed = (300*speedup)/ speeddown
-					3:
-						@warning_ignore("integer_division")
-						speed = (400*speedup)/ speeddown
-				get_node("Sprite2D").texture = c2
-				rotate += 1
-				if rotate > 400*speeddown:
-					chased = 0
-					rotate = 0
-			if chasing == false:
-				nav.target_position = chase.global_position
-				velocity = global_position.direction_to(nav.get_next_path_position()) * speed
+				if chasing == false:
+					if self.name == "Bully" or self.name == "Child1" or self.name == "Child2":
+						match Global.mode:
+							1:
+								speed = (200*speedup)/ speeddown
+							2:
+								speed = (350*speedup)/ speeddown
+							3:
+								speed = (450*speedup)/ speeddown
+						if rotate > 30:
+							nav.target_position = chase.global_position + Vector2(randi_range(-300,300),randi_range(-300,300))
+							rotate = 0
+						rotate += 1
+						velocity = global_position.direction_to(nav.get_next_path_position()) * speed
+						$Node2D.look_at(nav.get_next_path_position())
+						$Node2D.rotation_degrees -= 180
+					elif self.name == "Segment":
+						match Global.mode:
+							1:
+								speed = (200*speedup)/ speeddown
+							2:
+								speed = (350*speedup)/ speeddown
+							3:
+								speed = (450*speedup)/ speeddown
+						if rotate > 10:
+							$Node2D.look_at(get_parent().global_position)
+							$Node2D.rotation_degrees -= 180
+							rotate = 0
+						rotate += 1
+						global_position = lerp(global_position, get_parent().get_node("Node2D/Marker2D").global_position, 0.1)
+					if self.global_position.distance_to(nav.target_position) < 30:
+						velocity = Vector2(0,0)
+						rotate = 0
+						if self.name == "Bully" or self.name == "Child1" or self.name == "Child2":
+							nav.target_position = chase.global_position + Vector2(randi_range(-300,300),randi_range(-300,300))
+					if tail == 1:
+						#print("tail")
+						self.look_at(get_parent().global_position)
+						self.rotation_degrees -= 90
+					
+					
 		move_and_slide()
+	else:
+		if self.name == "Segment":
+			global_position = get_parent().get_node("Node2D/Marker2D").global_position
 	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -235,7 +324,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 					if thing == 1 and index != 2:
 						currentunlocked.append(unlocks[index])
 						index += 1
-				print(currentunlocked, currentunlocked.size())
 				Global.Player = str(currentunlocked[randi_range(0,currentunlocked.size()-1)])
 				get_tree().change_scene_to_file("res://BaseLevel.tscn")
 			elif Global.Player != "Paul":
@@ -264,6 +352,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				chasing = false
 				nocollid = false
 				rotate = -200
+		elif Global.Bully == "Snake":
+			body.breathingadd += 2
 		chased += 20
 
 

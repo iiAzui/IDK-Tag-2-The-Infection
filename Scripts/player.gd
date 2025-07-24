@@ -20,6 +20,16 @@ var pop1 = preload("res://Players/Poppy/Poppy1.png")
 var pop2 = preload("res://Players/Poppy/Poppy2.png")
 var pop3 = preload("res://Players/Poppy/Poppy3.png")
 
+var a1 = preload("res://Players/Antony/Antony1.png")
+var a2 = preload("res://Players/Antony/Antony2.png")
+var a3 = preload("res://Players/Antony/Antony3.png")
+var a4 = preload("res://Players/Antony/Antony4.png")
+var a5 = preload("res://Players/Antony/Antony5.png")
+
+var s1 = preload("res://Players/Secret/Secret1.png")
+var s2 = preload("res://Players/Secret/Secret2.png")
+var s3 = preload("res://Players/Secret/Secret3.png")
+
 var speed = 400.0
 var breathingdivide = 1
 var breathingmultiply = 1
@@ -27,7 +37,7 @@ var breathingadd = 0
 var breathingsubtract = 0
 var breathup = 0
 
-
+var inhale = 0
 
 var unlocks = Global.unlocksname
 var currentunlocked = []
@@ -40,6 +50,9 @@ var breathingup = false
 var breathed = false
 var breathingdown = false
 func _ready() -> void:
+	
+	if Global.inhale == true:
+		$"../Inhaler".visible = true
 	if Global.rebirth == false:
 		match Global.mode:
 			1:
@@ -60,7 +73,7 @@ func _ready() -> void:
 	match Global.Player:
 		"Bob":
 			get_node("Sprite2D").texture = b1
-			speed = 400
+			speed = 450
 		"Conner":
 			get_node("Sprite2D").texture = c1
 			speed = 700
@@ -71,15 +84,37 @@ func _ready() -> void:
 			breathingadd = 3
 		"Poppy":
 			get_node("Sprite2D").texture = pop1
-			speed = 400
+			speed = 420
 			$Blindness.visible = true
 			Global.scoreup = 2
+		"Antony":
+			get_node("Sprite2D").texture = a1
+			$"../Inhaler".visible = true
+			speed = 400
+			breathingmultiply = 3
+			Global.score += 10
+			if Global.inhale:
+				Global.breath += 40
+			else:
+				Global.breath += 20
+		"Secret":
+			get_node("Sprite2D").texture = s1
+			speed = 800
+			Global.score = 0
+			breathingmultiply = 4
+			breathup = 4
+			Global.bullyspeedmulti += 1
+			Global.scoreup = 2
+			Global.evilcoin = true
+	if Global.inhale:
+		breathingmultiply += 1
+	
 
 func _physics_process(_delta: float) -> void:
 	if firsttime == true:
 		firsttime = false
 		while Global.mode == 2 or Global.mode == 1:
-			if (not Input.is_action_pressed("Breath") or breathed) and Global.mode == 2:
+			if Global.Player == "Antony" or Global.inhale:
 				if breathingdown == false:
 					get_node("Timer").start(2)
 					breathingdown = true
@@ -87,17 +122,25 @@ func _physics_process(_delta: float) -> void:
 				Global.breath -= randi_range((1*breathingmultiply)-breathingsubtract,(5*breathingmultiply)+breathingadd)
 				breathingdown = false
 			else:
-				if breathingdown == false:
-					get_node("Timer").start(2)
-					breathingdown = true
-				await get_node("Timer").timeout
-				while Input.is_action_pressed("Breath") and not breathed:
-					@warning_ignore("integer_division")
-					Global.breath += (1+breathup)/breathingdivide
-					await get_tree().create_timer(0.1).timeout
-					if Global.breath == 100.0:
-						breathed = true
-				breathingdown = false
+				if (not Input.is_action_pressed("Breath") or breathed) and Global.mode == 2:
+					if breathingdown == false:
+						get_node("Timer").start(2)
+						breathingdown = true
+					await get_node("Timer").timeout
+					Global.breath -= randi_range((1*breathingmultiply)-breathingsubtract,(5*breathingmultiply)+breathingadd)
+					breathingdown = false
+				else:
+					if breathingdown == false:
+						get_node("Timer").start(2)
+						breathingdown = true
+					await get_node("Timer").timeout
+					while Input.is_action_pressed("Breath") and not breathed:
+						@warning_ignore("integer_division")
+						Global.breath += (1+breathup)/breathingdivide
+						await get_tree().create_timer(0.1).timeout
+						if Global.breath == 100.0:
+							breathed = true
+					breathingdown = false
 			
 		while Global.mode == 3:
 			if get_node("Timer2").is_stopped() or Global.breath == 75.0:
@@ -119,7 +162,6 @@ func _physics_process(_delta: float) -> void:
 			
 	if not Input.is_action_pressed("Breath") and breathed == true:
 		breathed = false
-		
 	$"../Label".text = "Breath: " + str(Global.breath)
 	$"../Score".text = "Coins: " + str(Global.score)
 	if Global.breath < 70 and Global.breath > 60:
@@ -224,9 +266,46 @@ func _physics_process(_delta: float) -> void:
 			elif directionX > 0:
 				get_node("Sprite2D").texture = pop2
 				get_node("Sprite2D").flip_h = false
+		"Antony":
+			if inhale > 0:
+				speed = 550
+				inhale -= 1
+				if directionY < 0:
+					get_node("Sprite2D").texture = a3
+				elif directionY > 0:
+					get_node("Sprite2D").texture = a4
+				elif directionX < 0:
+					get_node("Sprite2D").texture = a5
+					get_node("Sprite2D").flip_h = true
+				elif directionX > 0:
+					get_node("Sprite2D").texture = a5
+					get_node("Sprite2D").flip_h = false
+			else:
+				speed = 400
+				if directionY < 0:
+					get_node("Sprite2D").texture = a3
+				elif directionY > 0:
+					get_node("Sprite2D").texture = a1
+				elif directionX < 0:
+					get_node("Sprite2D").texture = a2
+					get_node("Sprite2D").flip_h = true
+				elif directionX > 0:
+					get_node("Sprite2D").texture = a2
+					get_node("Sprite2D").flip_h = false
+		"Secret":
+			if directionY < 0:
+				get_node("Sprite2D").texture = s3
+			elif directionY > 0:
+				get_node("Sprite2D").texture = s1
+			elif directionX < 0:
+				get_node("Sprite2D").texture = s2
+				get_node("Sprite2D").flip_h = true
+			elif directionX > 0:
+				get_node("Sprite2D").texture = s2
+				get_node("Sprite2D").flip_h = false
 			
 		
-	if Global.mode == 3:
+	if Global.mode == 3 and not Global.Player == "Antony" and not Global.inhale:
 		if Input.is_action_just_pressed("Breath") and Global.breath < 75.0:
 			if breathingup == false:
 				get_node("Timer2").start(1.5)
@@ -245,7 +324,6 @@ func _physics_process(_delta: float) -> void:
 				if thing == 1 and index != 2:
 					currentunlocked.append(unlocks[index])
 					index += 1
-			print(currentunlocked, currentunlocked.size())
 			Global.Player = str(currentunlocked[randi_range(0,currentunlocked.size()-1)])
 			get_tree().change_scene_to_file("res://BaseLevel.tscn")
 		elif not Global.Player == "Paul":
@@ -262,7 +340,6 @@ func _physics_process(_delta: float) -> void:
 				if thing == 1 and index != 2:
 					currentunlocked.append(unlocks[index])
 					index += 1
-			print(currentunlocked, currentunlocked.size())
 			Global.Player = str(currentunlocked[randi_range(0,currentunlocked.size()-1)])
 			get_tree().change_scene_to_file("res://BaseLevel.tscn")
 		elif not Global.Player == "Paul":

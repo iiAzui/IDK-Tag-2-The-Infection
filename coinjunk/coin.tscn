@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcoi6hhg4mvd0"]
+[gd_scene load_steps=6 format=3 uid="uid://dcoi6hhg4mvd0"]
 
 [ext_resource type="Script" uid="uid://bejuee8llcil8" path="res://Scripts/coin.gd" id="1_gy2x0"]
 [ext_resource type="Texture2D" uid="uid://eomh3ih6d31d" path="res://coinjunk/coin.png" id="2_6clut"]
@@ -7,6 +7,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qbu2v"]
 radius = 49.0
 height = 170.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gy2x0"]
+size = Vector2(66, 71)
 
 [node name="Coin" type="StaticBody2D"]
 script = ExtResource("1_gy2x0")
@@ -18,6 +21,15 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_qbu2v")
 
+[node name="Inhaler" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inhaler"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_gy2x0")
+disabled = true
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_6clut")
@@ -28,3 +40,5 @@ texture = ExtResource("3_b5cus")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Inhaler" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Inhaler" to="." method="_on_area_2d_body_entered"]

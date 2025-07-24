@@ -1,8 +1,8 @@
 extends Node2D
 
 const SAVE = "user://save.save"
-var unlocks = [preload("res://Players/Bob/Bob1.png"),preload("res://Players/Conner/Conner1.png"),preload("res://Players/Paul/Paul1.png"),preload("res://Players/Poppy/Poppy1.png"),"5","6",preload("res://Bullies/Redson/Redson1.png"),preload("res://Bullies/Classic/Bill1.png"),preload("res://Bullies/Clarence/Clarence1.png"),preload("res://Bullies/Jimmy/Jimmy1.png"),"11","12"]
-var used = [0,0,0,0,0,0]
+var unlocks = [preload("res://Players/Bob/Bob1.png"),preload("res://Players/Conner/Conner1.png"),preload("res://Players/Paul/Paul1.png"),preload("res://Players/Poppy/Poppy1.png"),preload("res://Players/Antony/Antony1.png"),"6",preload("res://Bullies/Redson/Redson1.png"),preload("res://Bullies/Classic/Bill1.png"),preload("res://Bullies/Clarence/Clarence1.png"),preload("res://Bullies/Jimmy/Jimmy1.png"),preload("res://Bullies/Snake/Snake1.png"),"12"]
+var used = [0,0,0,0,0]
 var pused = [0,0,0,0,0,0]
 var index = 0
 
@@ -26,8 +26,11 @@ func _ready() -> void:
 		if thing == 1:
 			if index > 5:
 				var unmatched = true
+				if index == 10:
+					unmatched = false
+					$Bully6.visible = true
 				while unmatched:
-					match randi_range(1,6):
+					match randi_range(1,5):
 						1:
 							if used[0] == 0:
 								$Bully1.texture = unlocks[index]
@@ -58,12 +61,12 @@ func _ready() -> void:
 								$Bully5.visible = true
 								used[4] = 1
 								unmatched = false
-						6:
-							if used[5] == 0:
-								$Bully6.texture = unlocks[index]
-								$Bully6.visible = true
-								used[5] = 1
-								unmatched = false
+						#6:
+							#if used[5] == 0:
+								#$Bully6.texture = unlocks[index]
+								#$Bully6.visible = true
+								#used[5] = 1
+								#unmatched = false
 			else:
 				var unmatched = true
 				while unmatched:

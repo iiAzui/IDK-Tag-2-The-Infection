@@ -4,7 +4,10 @@ var index = 0
 var unlocks = Global.unlocksname
 
 func _ready() -> void:
-	%PB.position = Global.PBPos
+	if Global.Player != "Secret":
+		%PB.position = Global.PBPos
+	else:
+		%PB.position = Vector2(-94,141)
 	%BB.position = Global.BBPos
 	match Global.mode:
 		1:
@@ -23,6 +26,9 @@ func _ready() -> void:
 			
 	for thing in Global.Unlocks:
 		if thing == 1:
+			if unlocks[index] == "Snake":
+				$Snake2.self_modulate = Color("ffffff")
+				$Snake3.self_modulate = Color("ffffff")
 			get_node(unlocks[index]).self_modulate = Color("ffffff")
 			get_node(str(unlocks[index])+ "/"+str(unlocks[index])+"Bttn").disabled = false
 			get_node(str(unlocks[index])+ "/UnlockText").visible = false
@@ -85,8 +91,9 @@ func _on_4_bttn_pressed() -> void:
 
 
 func _on_5_bttn_pressed() -> void:
-	pass # Replace with function body.
-
+	Global.Player = "Antony"
+	%PB.position = get_node("Antony").position
+	Global.PBPos = %PB.position
 
 func _on_6_bttn_pressed() -> void:
 	pass # Replace with function body.
@@ -115,7 +122,9 @@ func _on_10_bttn_pressed() -> void:
 
 
 func _on_11_bttn_pressed() -> void:
-	pass # Replace with function body.
+	Global.Bully = "Snake"
+	%BB.position = get_node("Snake").position
+	Global.BBPos = %BB.position
 
 
 func _on_12_bttn_pressed() -> void:

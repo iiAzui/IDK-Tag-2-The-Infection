@@ -82,6 +82,10 @@ horizontal_alignment = 1
 [node name="Coin" parent="." instance=ExtResource("4_knq2t")]
 position = Vector2(-309, -399)
 
+[node name="Inhaler" parent="." instance=ExtResource("4_knq2t")]
+visible = false
+position = Vector2(-309, -399)
+
 [node name="EvilCoin" parent="." instance=ExtResource("4_knq2t")]
 position = Vector2(-309, -399)
 

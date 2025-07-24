@@ -11,15 +11,17 @@ var nrmwins = 0
 var scoreup = 1
 
 var rebirth = false
+var snakes = 0
 
 var PBPos = Vector2(96,176)
 var BBPos = Vector2(1080,176)
 
-var unlocksname = ["Bob","Conner","Paul","Poppy","5","6","Redson","Bill","Clarence","Jimmy","11","12"]
+var unlocksname = ["Bob","Conner","Paul","Poppy","Antony","6","Redson","Bill","Clarence","Jimmy","Snake","12"]
 
 var Unlocks = [1,0,0,0,0,0,1,0,0,0,0,0]
-#Runners:Bob Conner Paul Poppy 5 6 Bullies:Redson Bill Clarence Jimmy 5 6
+#Runners:Bob Conner Paul Poppy Antony 6 Bullies:Redson Bill Clarence Jimmy Snake 6
 
 var addchild = false
 var bullyspeedmulti = 1
 var evilcoin = false
+var inhale = false
